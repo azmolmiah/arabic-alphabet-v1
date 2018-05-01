@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/qaida.css">
+        <title>Little Arrow | Online Qaida</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+            <div class="container">
+                <a href="index.html" class="navbar-brand">Little Arrow</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto" id="navContainer">
+                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Arabic Alphabets -->
+        <section id="alphabet">
+            <div class="container">
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+                <ul class="letters"></ul>
+            </div>
+        </section>
+        
+        <section id="bottomnav">
+            <!-- Bottom Nav -->
+            <nav class="navbar navbar-dark fixed-bottom bottom-navbar py-2">
+                <div class="container">
+                    <button id="prev" class="btn btn-outline-light">Prev</button><h3 class="text-center" id="current"></h3><button id="next" class="btn btn-outline-light">Next</button>
+                </div>
+            </nav>
+        </section>
+
+    <script>
+        function qaida(){
+            
+            var folder = "audio/";
+            var ext = ".mp3";
+            var sound;
+            sound = new Audio();
+            sound.play();
+            
+            function _id(){
+                return document.getElementById(id);
+            }
+            
+            let current1 = document.querySelector('#current');
+            let itemsList = document.querySelectorAll('.letters');
+            let next = document.querySelector('#next');
+            let prev = document.querySelector('#prev');
+            
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+
+                if(this.readyState == 4 && this.status == 200){
+
+                    var response = JSON.parse(xhttp.responseText);
+                    var obj = Object.getOwnPropertyNames(response);
+                    for (var i = 0; i < obj.length; i++){
+                        // console.log(obj[i]);
+                        // console.log(Object.values(response));
+                    }
+                    var output = '';
+                    // console.log(response.values());
+                    
+                    function changeOutput(){
+                        for(var i = 0;i<response.letterspage1.length;i++){
+                            output += '<li id="'+response.letterspage1[i].name+'"class="col-2">'+'<img src="'+response.letterspage1[i].image+'">'+'</li>';
+                        }
+                    }
+                        
+                    changeOutput();
+
+                    let current = 0;
+
+                    function reset(){
+                        for(let i = 0; i < itemsList.length; i++){
+                            itemsList[i].style.display = 'none';
+                            // itemsList[i].innerHTML = '';        
+                        }
+                    }
+
+                    function startSlide(){
+                        reset();
+                        itemsList[0].style.display = 'block';
+                        itemsList[0].innerHTML = output;
+                        var currentNumber = current+'/40';
+                        current1.innerHTML = currentNumber;
+                    }
+
+                    function slideLeft(){
+                        reset();
+                        itemsList[current - 1].style.display = 'block';
+                        var currentNumber = current-1+'/40';
+                        current1.innerHTML = currentNumber;
+                        current--;
+                    }
+
+                    function slideRight(){
+                        reset();
+                        itemsList[current + 1].style.display = 'block';
+                        // itemsList[current + 1].innerHTML = output;
+                        var currentNumber = current+1+'/40';
+                        current1.innerHTML = currentNumber;
+                        current++;
+                    }
+                        
+                    prev.addEventListener('click',function(){
+                        if(current === 0){
+                            current = itemsList.length;
+                        }
+                        slideLeft();
+                    });
+
+                    next.addEventListener('click',function(){
+                        if(current === itemsList.length - 1){
+                            current = -1;
+                        }         
+                        slideRight();
+                    });
+
+                    startSlide();
+
+                   
+                    itemsList.forEach(li => li.addEventListener('click', playSound));
+
+                    function playSound(e){
+                        var pathId = e.path[1].id;
+                        sound.src = folder+pathId+ext;
+                        if (sound.paused){
+                            sound.play();
+                        }
+                                
+                    }
+                    
+                }
+            };
+            xhttp.open("GET", "js/qaida.json", true);
+            xhttp.send();
+        }
+        window.addEventListener("load", qaida);
+        </script>
+
+        <!-- <script src="js/qaida.js"></script> -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
