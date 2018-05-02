@@ -124,9 +124,59 @@
     ],
 
     "letterspage2":[
-        
+        {
+            "name":"Kaaf",
+            "image":"img/kaf.png"
+        },
+        {
+            "name":"Laam",
+            "image":"img/laam.png"
+        },
+        {
+            "name":"Meem",
+            "image":"img/meem.png"
+        },
+        {
+            "name":"Noon",
+            "image":"img/noon.png"
+        },
+        {
+            "name":"Noon",
+            "image":"img/woaw.png"
+        },
+        {
+            "name":"haa",
+            "image":"img/ha.png"
+        },
+        {
+            "name":"Hamza",
+            "image":"img/hamza.png"
+        },
+        {
+            "name":"Yaa",
+            "image":"img/yaa.png"
+        },
+        {
+            "name":"Yaa",
+            "image":"img/ya.png"
+        }  
     ],
     "letterspage3":[
-        
+        {
+            "name":"haa",
+            "image":"img/ha.png"
+        },
+        {
+            "name":"Hamza",
+            "image":"img/hamza.png"
+        },
+        {
+            "name":"Yaa",
+            "image":"img/yaa.png"
+        },
+        {
+            "name":"Yaa",
+            "image":"img/ya.png"
+        } 
     ]
 }

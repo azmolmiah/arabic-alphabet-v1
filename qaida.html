@@ -26,10 +26,10 @@
 
         <!-- Arabic Alphabets -->
         <section id="alphabet">
-            <div class="container">
+            <div class="container">  
                 <ul class="letters"></ul>
                 <ul class="letters"></ul>
-                <ul class="letters"></ul>
+                <ul class="letters"></ul>    
                 <ul class="letters"></ul>
                 <ul class="letters"></ul>
                 <ul class="letters"></ul>
@@ -93,7 +93,7 @@
                 return document.getElementById(id);
             }
             
-            let current1 = document.querySelector('#current');
+            let currentPageNumber = document.querySelector('#current');
             let itemsList = document.querySelectorAll('.letters');
             let next = document.querySelector('#next');
             let prev = document.querySelector('#prev');
@@ -105,54 +105,54 @@
                 if(this.readyState == 4 && this.status == 200){
 
                     var response = JSON.parse(xhttp.responseText);
-                    var obj = Object.getOwnPropertyNames(response);
-                    for (var i = 0; i < obj.length; i++){
-                        // console.log(obj[i]);
-                        // console.log(Object.values(response));
-                    }
-                    var output = '';
-                    // console.log(response.values());
                     
-                    function changeOutput(){
-                        for(var i = 0;i<response.letterspage1.length;i++){
-                            output += '<li id="'+response.letterspage1[i].name+'"class="col-2">'+'<img src="'+response.letterspage1[i].image+'">'+'</li>';
-                        }
-                    }
+                    var obj = Object.values(response);
                         
-                    changeOutput();
+                    var output = '';
 
                     let current = 0;
 
                     function reset(){
                         for(let i = 0; i < itemsList.length; i++){
                             itemsList[i].style.display = 'none';
-                            // itemsList[i].innerHTML = '';        
+                            itemsList[i].innerHTML = '';        
                         }
                     }
 
-                    function startSlide(){
+                    function startSlide(e){
                         reset();
                         itemsList[0].style.display = 'block';
-                        itemsList[0].innerHTML = output;
                         var currentNumber = current+'/40';
-                        current1.innerHTML = currentNumber;
+                        currentPageNumber.innerHTML = currentNumber;
+                        for(var i = 0;i<obj[0].length;i++){
+                            output += '<li id="'+obj[0][i].name+'"class="col-2">'+'<img src="'+obj[0][i].image+'">'+'</li>';
+                            itemsList[0].innerHTML = output;
+                        } 
                     }
 
                     function slideLeft(){
                         reset();
                         itemsList[current - 1].style.display = 'block';
                         var currentNumber = current-1+'/40';
-                        current1.innerHTML = currentNumber;
+                        currentPageNumber.innerHTML = currentNumber;
                         current--;
+                        for(var i = 0;i<obj[0 - 1].length;i++){
+                            output += '<li id="'+obj[0 - 1][i].name+'"class="col-2">'+'<img src="'+obj[0 - 1][i].image+'">'+'</li>';
+                            itemsList[current - 1].innerHTML = output;
+                        } 
                     }
 
                     function slideRight(){
                         reset();
                         itemsList[current + 1].style.display = 'block';
-                        // itemsList[current + 1].innerHTML = output;
                         var currentNumber = current+1+'/40';
-                        current1.innerHTML = currentNumber;
+                        currentPageNumber.innerHTML = currentNumber;
                         current++;
+                        for(var i = 0;i<obj[current + 1].length;i++){
+                            output += '<li id="'+obj[current + 1][i].name+'"class="col-2">'+'<img src="'+obj[current + 1][i].image+'">'+'</li>';
+                            console.log(obj[current + 1][i].name);
+                            itemsList[current + 1].innerHTML = output;
+                        } 
                     }
                         
                     prev.addEventListener('click',function(){
