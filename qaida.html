@@ -135,7 +135,7 @@
                         itemsList[current - 1].style.display = 'block';
                         var currentNumber = current-1+'/40';
                         currentPageNumber.innerHTML = currentNumber;
-                        for(var i = 0;i<obj.length;i++){
+                        for(var i = 0;i<obj[current - 1].length;i++){
                             output += '<li id="'+obj[current - 1][i].name+'"class="col-2">'+'<img src="'+obj[current - 1][i].image+'">'+'</li>';
                             itemsList[current - 1].innerHTML = output;
                         } 
