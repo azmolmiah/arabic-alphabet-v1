@@ -1,116 +1,113 @@
-// Qaida Audio
-
 function qaida(){
-    var sound;
-        sound = new Audio();
-        sound.play();
-
-    
-        var soundList = document.getElementById('letters');
-        function soundplay(){
             
-            soundList.addEventListener('click', letterReplay);
-            var sounds ;
-            if (sound.paused){
-                sound.play();
+    var folder = "audio/";
+    var ext = ".mp3";
+    var sound;
+    sound = new Audio();
+    sound.play();
+    
+    function _id(){
+        return document.getElementById(id);
+    }
+    
+    let currentPageNumber = document.querySelector('#current');
+    let itemsList = document.querySelectorAll('.letters');
+    let next = document.querySelector('#next');
+    let prev = document.querySelector('#prev');
+    
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+
+        if(this.readyState == 4 && this.status == 200){
+
+            var response = JSON.parse(xhttp.responseText);
+            
+            var obj = Object.values(response);
+                
+            var output = '';
+
+            let current = 0;
+
+            function reset(){
+                for(let i = 0; i < itemsList.length; i++){
+                    itemsList[i].style.display = 'none';
+                    output = '';     
+                }
             }
-        }
 
-        // Alif 
-        document.getElementById('alif').addEventListener('click', letterAlif);
-        function letterAlif(e){
-            sound.src = "audio/alif.mp3";
-            soundplay();
-            console.log(e);
-        }
-        
-        // Baa
-        document.getElementById('baa').addEventListener("click", letterBaa);
-        function letterBaa(){
-            sound.src = "audio/baa.mp3";
-            soundplay();
-        }
+            function startQaida(){
+                reset();
+                itemsList[0].style.display = 'block';
+                var currentNumber = current+'/40';
+                currentPageNumber.innerHTML = currentNumber;
+                for(var i = 0;i<obj[0].length;i++){
+                    output += '<li id="'+obj[0][i].name+'"class="col-2">'+'<img src="'+obj[0][i].image+'">'+'</li>';
+                    itemsList[0].innerHTML = output;
+                } 
+            }
 
-        // Thaa
-        document.getElementById('tha').addEventListener("click", letterTha);
-        function letterTha(){
-            sound.src = "audio/thaa.mp3";
-            soundplay();
-        }
-        
-        // Thsaa
-        document.getElementById('thsaa').addEventListener("click", letterThsaa);
-        function letterThsaa(){
-            sound.src = "audio/thsaa.mp3";
-            soundplay();
-        }
-        
-        // Jeem
-        document.getElementById('jeem').addEventListener("click", letterJeem);
-        function letterJeem(){
-            sound.src = "audio/jeem.mp3";
-            soundplay();
-        }
-        
-        // Haa
-        document.getElementById('haa').addEventListener("click", letterHaa);
-        function letterHaa(){
-            sound.src = "audio/haa.mp3";
-            soundplay();
-        }
+            function previousPage(){
+                reset();
+                itemsList[current - 1].style.display = 'block';
+                var currentNumber = current-1+'/40';
+                currentPageNumber.innerHTML = currentNumber;
+                for(var i = 0;i<obj[current - 1].length;i++){
+                    output += '<li id="'+obj[current - 1][i].name+'"class="col-2">'+'<img src="'+obj[current - 1][i].image+'">'+'</li>';
+                    itemsList[current - 1].innerHTML = output;
+                } 
+                current--;
+            }
 
-        // Khaa
-        document.getElementById('khaa').addEventListener("click", letterKhaa);
-        function letterKhaa(){
-            sound.src = "audio/khaa.mp3";
-            soundplay();
-        }
-        
-        // Daal
-        document.getElementById('daal').addEventListener("click", letterDaal);
-        function letterDaal(){
-            sound.src = "audio/daal.mp3";
-            soundplay();
-        }
+            function nextPage(){
+                reset();
+                itemsList[current + 1].style.display = 'block';
+                var currentNumber = current+1+'/40';
+                currentPageNumber.innerHTML = currentNumber;
+                for(var i = 0;i<obj[current + 1].length;i++){
+                    output += '<li id="'+obj[current + 1][i].name+'"class="col-2">'+'<img src="'+obj[current + 1][i].image+'">'+'</li>';
+                    itemsList[current + 1].innerHTML = output;
+                } 
+                current++;
+            }
+                
+            prev.addEventListener('click',function(){
+                if(current === 0){
+                    current = itemsList.length;
+                }
+                if(current === 0){
+                    current = obj.length;
+                }
+                previousPage();
+            });
 
-        // Zsaal
-        document.getElementById('zsaal').addEventListener("click", letterZsaal);
-        function letterZsaal(){
-            sound.src = "audio/zsaal.mp3";
-            soundplay();
+            next.addEventListener('click',function(){
+                if(current === itemsList.length - 1){
+                    current = -1;
+                }
+                if (current === obj.length -1){
+                    current = -1;
+                }        
+                nextPage();
+            });
+
+            startQaida();
+
+           
+            itemsList.forEach(li => li.addEventListener('click', playSound));
+
+            function playSound(e){
+                var pathId = e.path[1].id;
+                sound.src = folder+pathId+ext;
+                if (sound.paused){
+                    sound.play();
+                }
+                        
+            }
+            
         }
-
-        // Raa
-        document.getElementById('raa').addEventListener("click", letterRaa);
-        function letterRaa(){
-            sound.src = "audio/raa.mp3";
-            soundplay();
-        }
-
-        // Zaa
-        document.getElementById('zaa').addEventListener("click", letterZaa);
-        function letterZaa(){
-            sound.src = "audio/zaa.mp3";
-            soundplay();
-        }
-
-        // Seen
-        document.getElementById('seen').addEventListener("click", letterSeen);
-        function letterSeen(){
-            sound.src = "audio/seen.mp3";
-            soundplay();
-        }
-
-        // Sheen
-        document.getElementById('sheen').addEventListener("click", letterSheen);
-        function letterSheen(){
-            sound.src = "audio/sheen.mp3";
-            soundplay();
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-
+    };
+    xhttp.open("GET", "js/qaida.json", true);
+    xhttp.send();
 }
-
-
-
 window.addEventListener("load", qaida);
-
