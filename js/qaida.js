@@ -97,7 +97,7 @@ function qaida(){
             function nextPage(){
                 // Reset or clear the page of any content everytime the next page is called or loaded
                 reset();
-                // Iterate of next page or page divs indexes to be displayed by add 1 each time
+                // Iterate of next page or page divs indexes to be displayed by adding 1 each time
                 itemsList[current + 1].style.display = 'block';
                 // Iterate to current page number by adding 1
                 currentNumber = current+1+'/40';

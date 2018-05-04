@@ -119,14 +119,86 @@
         {
             "name":"Yaa",
             "image":"img/ya.png"
-        }          
+        }     
       
     ],
 
     "letterspage2":[
         {
-            "name":"Kaaf",
-            "image":"img/kaf.png"
+            "name":"haa",
+            "image":"img/haa.png"
+        },
+        {
+            "name":"thaa",
+            "image":"img/tha.png"
+        },
+        {
+            "name":"thsaa",
+            "image":"img/thsaa.png"
+        },
+        {
+            "name":"baa",
+            "image":"img/baa.png"
+        },
+        {
+            "name":"jeem",
+            "image":"img/jeem.png"
+        },
+        {
+            "name":"Thwaa",
+            "image":"img/thwa.png"
+        },
+        {
+            "name":"Zsaal",
+            "image":"img/zsaal.png"
+        },
+        {
+            "name":"Zaa",
+            "image":"img/zaa.png"
+        },
+        {
+            "name":"Seen",
+            "image":"img/seen.png"
+        },
+        {
+            "name":"Swaad",
+            "image":"img/swad.png"
+        },
+        {
+            "name":"Ckaff",
+            "image":"img/caaf.png"
+        },
+        {
+            "name":"Dwaad",
+            "image":"img/dwad.png"
+        },
+        {
+            "name":"khaa",
+            "image":"img/kha.png"
+        },
+        {
+            "name":"Zwaa",
+            "image":"img/zwa.png"
+        },
+        {
+            "name":"Ghayn",
+            "image":"img/ghayn.png"
+        },
+        {
+            "name":"Ghayn",
+            "image":"img/ayn.png"
+        },
+        {
+            "name":"haa",
+            "image":"img/ha.png"
+        },
+        {
+            "name":"Sheen",
+            "image":"img/sheen.png"
+        },
+        {
+            "name":"Yaa",
+            "image":"img/ya.png"
         },
         {
             "name":"Laam",
@@ -145,38 +217,36 @@
             "image":"img/woaw.png"
         },
         {
-            "name":"haa",
-            "image":"img/ha.png"
-        },
-        {
-            "name":"Hamza",
-            "image":"img/hamza.png"
+            "name":"Faa",
+            "image":"img/fa.png"
         },
         {
             "name":"Yaa",
             "image":"img/yaa.png"
         },
         {
-            "name":"Yaa",
-            "image":"img/ya.png"
-        }  
+            "name":"Hamza",
+            "image":"img/hamza.png"
+        },
+        {
+            "name":"Kaaf",
+            "image":"img/kaf.png"
+        },
+        {
+            "name":"Daal",
+            "image":"img/daal.png"
+        },
+        {
+            "name":"alif",
+            "image":"img/alif.png"
+        },
+        {
+            "name":"Raa",
+            "image":"img/raa.png"
+        }           
+             
     ],
     "letterspage3":[
-        {
-            "name":"haa",
-            "image":"img/ha.png"
-        },
-        {
-            "name":"Hamza",
-            "image":"img/hamza.png"
-        },
-        {
-            "name":"Yaa",
-            "image":"img/yaa.png"
-        },
-        {
-            "name":"Yaa",
-            "image":"img/ya.png"
-        } 
+        
     ]
 }
