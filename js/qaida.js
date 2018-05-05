@@ -30,12 +30,12 @@ function qaida(){
 
             // Get property values of the keys in an array
             let obj = Object.values(response);
-
+            
             /*Set a variable with the value of 0 to use to iterate over pages, to display current
             page number, iterate current index of page divs or obj variable arrays*/
             let current = 0;
 
-            // set empty variable for use multiple times for current page namber content
+            // set empty variable for use multiple times for current page number content
             let currentNumber;
 
             /* Rest or clear the page when this function is called intended when new page loads
@@ -105,11 +105,23 @@ function qaida(){
                 currentPageNumber.innerHTML = currentNumber;
                 // Loop the current object index adding one to get the next index each time
                 for(let i = 0;i<obj[current + 1].length;i++){
-                    // display the current object index add one properties of name and image everytime going to next each time
-                    output += '<li id="'+obj[current + 1][i].name+'"class="col-2">'+'<img src="'+obj[current + 1][i].image+'">'+'</li>';
-                    // Output or display in page divs by minus one each time going to previous
-                    itemsList[current + 1].innerHTML = output;
-                } 
+            
+                    if(obj[current + 1] == obj[2]){
+
+                        // display the current object index add one properties of name and image everytime going to next each time
+                        output += '<li id="'+obj[2][i].name+'"class="col-1">'+'<img src="'+obj[2][i].image+'">'+'</li>';
+                        // Output or display in page divs by minus one each time going to previous
+                        itemsList[2].innerHTML = output;
+                        
+                    }else{//Default output below
+                        
+                        // display the current object index add one properties of name and image everytime going to next each time
+                        output += '<li id="'+obj[current + 1][i].name+'"class="col-2">'+'<img src="'+obj[current + 1][i].image+'">'+'</li>';
+                        // Output or display in page divs by minus one each time going to previous
+                        itemsList[current + 1].innerHTML = output;
+                        
+                    }
+                }
                 current++;
             }//--Closing brace nextPage()
 
