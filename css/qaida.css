@@ -82,3 +82,6 @@ body {
     }
 }
   
+.sect {
+    display: inline-block;
+}

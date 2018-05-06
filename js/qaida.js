@@ -13,6 +13,7 @@ function qaida(){
     let currentPageNumber = document.querySelector('#current');
     // Get all the pages to be displayed
     let itemsList = document.querySelectorAll('.letters');
+    let itemsListInner = document.querySelectorAll('.sect');
     // Get the next or next page element
     let next = document.querySelector('#next');
     // Get the previous or previous page element
@@ -37,6 +38,8 @@ function qaida(){
 
             // set empty variable for use multiple times for current page number content
             let currentNumber;
+            let output;
+            let output2;
 
             /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
@@ -48,6 +51,7 @@ function qaida(){
                 }
                 // Set output to empty string to clear content
                 output = '';
+                output2 = '';
             }
 
             // Set the first page to be displayed when windows loaded
@@ -106,13 +110,20 @@ function qaida(){
                 // Loop the current object index adding one to get the next index each time
                 for(let i = 0;i<obj[current + 1].length;i++){
             
-                    if(obj[current + 1] == obj[2]){
-
-                        // display the current object index add one properties of name and image everytime going to next each time
-                        output += '<li id="'+obj[2][i].name+'"class="col-1">'+'<img src="'+obj[2][i].image+'">'+'</li>';
-                        // Output or display in page divs by minus one each time going to previous
-                        itemsList[2].innerHTML = output;
+                    if(obj[current + 1] === obj[2]){//Page 3
                         
+                        // Output or display in page divs by minus one each time going to previous
+                        obj[2][0].sectOne.forEach((element) =>{
+                            output += '<li id="'+element.name+'"class="col-1">'+'<img src="'+element.image+'">'+'</li>';
+                            itemsListInner[0].innerHTML = output;
+                        });
+                        
+                        // Output or display in page divs by minus one each time going to previous
+                        obj[2][0].sectTwo.forEach((el) =>{
+                            output2 += '<li id="'+el.name+'"class="col-1">'+'<img src="'+el.image+'">'+'</li>';
+                            itemsListInner[1].innerHTML = output2;
+                        });
+    
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time
