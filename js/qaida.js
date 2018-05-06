@@ -39,7 +39,8 @@ function qaida(){
             // set empty variable for use multiple times for current page number content
             let currentNumber;
             let output;
-            let output2;
+            let outputTwo;
+            let outputThree;
 
             /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
@@ -51,7 +52,8 @@ function qaida(){
                 }
                 // Set output to empty string to clear content
                 output = '';
-                output2 = '';
+                outputTwo = '';
+                outputThree = '';
             }
 
             // Set the first page to be displayed when windows loaded
@@ -112,16 +114,19 @@ function qaida(){
             
                     if(obj[current + 1] === obj[2]){//Page 3
                         
-                        // Output or display in page divs by minus one each time going to previous
-                        obj[2][0].sectOne.forEach((element) =>{
-                            output += '<li id="'+element.name+'"class="col-1">'+'<img src="'+element.image+'">'+'</li>';
+                        obj[2][0].sectOne.forEach((one) =>{
+                            output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
                             itemsListInner[0].innerHTML = output;
                         });
                         
-                        // Output or display in page divs by minus one each time going to previous
-                        obj[2][0].sectTwo.forEach((el) =>{
-                            output2 += '<li id="'+el.name+'"class="col-1">'+'<img src="'+el.image+'">'+'</li>';
-                            itemsListInner[1].innerHTML = output2;
+                        obj[2][0].sectTwo.forEach((two) =>{
+                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[1].innerHTML = outputTwo;
+                        });
+
+                        obj[2][0].sectThree.forEach((three) =>{
+                            outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
+                            itemsListInner[2].innerHTML = outputThree;
                         });
     
                     }else{//Default output below
