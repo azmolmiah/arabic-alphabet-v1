@@ -1,0 +1,87 @@
+/*Global*/
+ul {
+    -webkit-margin-before:0!important;
+    -webkit-margin-after:0!important;
+    -webkit-padding-start:0!important;
+}
+
+.navbar {
+    background-color: #10a2c7;
+    padding: 0;
+}
+  
+a {
+    text-decoration: none!important;
+}
+  
+body {
+    color: #fff !important; 
+}
+
+.container {
+    max-width: 675px !important;
+}
+
+.btn-outline-light:hover {
+    color: #10a2c7 !important;
+    cursor: pointer; 
+}
+  
+.btn-outline-dark {
+    color: #10a2c7;
+    background-color: transparent;
+    background-image: none;
+    border-color: #10a2c7;
+}
+  
+.btn-outline-dark:hover {
+    color: #fff;
+    background-color: #10a2c7;
+}
+  
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #10a2c7;
+    border-color: #10a2c7;
+}
+
+/*Online Qaida */
+
+#alphabet {
+    margin: 3.5em 0 3.5em 0;
+}
+
+#alphabet img {
+    height: auto;
+    width: 100%; 
+    cursor: pointer;
+    border: 1px solid #000;
+  }
+
+#alphabet img:hover {
+    background: #10a2c7;
+}
+  
+.letters{
+    list-style-type: none;
+}
+  
+.letters li {
+    padding: 0!important;
+    float: right;
+}
+  
+.bottom-navbar {
+    background-color: #10a2c7;
+}
+
+@media (max-width: 576px) { 
+    .navbar-brand{
+      padding-left: 1em!important;
+    }
+}
+  
+.sect {
+    display: inline-block;
+}
