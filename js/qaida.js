@@ -149,7 +149,7 @@ function qaida(){
                 
                 for(let i = 0;i<obj[current + 1].length;i++){
             
-                    if(obj[current + 1] === obj[2]){//Page 3
+                    if(obj[current + 1] === obj[2] || currentPageNumber.selectedIndex == 2){//Page 3
                         
                         obj[2][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
