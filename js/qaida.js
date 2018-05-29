@@ -10,7 +10,7 @@ function qaida(){
     // Setting the Audio Object
     sound = new Audio();
     // Get current number element
-    let currentPageNumber = document.querySelector('#current');
+    let currentPageNumber = document.querySelector('#pageNumber');
     // Get all the pages to be displayed
     let itemsList = document.querySelectorAll('.letters');
     let itemsListInner = document.querySelectorAll('.sect');
@@ -51,9 +51,9 @@ function qaida(){
                     itemsList[i].style.display = 'none';    
                 }
                 // Set output to empty string to clear content
-                output = '';
-                outputTwo = '';
-                outputThree = '';
+                output = ' ';
+                outputTwo = ' ';
+                outputThree = ' ';
             }
 
             // Set the first page to be displayed when windows loaded
@@ -62,12 +62,17 @@ function qaida(){
                 reset();
                 // Set the first page div to display
                 itemsList[0].style.display = 'block';
-                // Set current variable to first page or pages out of 40 which is the total divs
-                currentNumber = current+'/40';
-                // Set inner html of the current number vriable to display for first page
-                currentPageNumber.innerHTML = currentNumber;
-                // Loop through json object reponse with the first index values length or letterspage1
+                
+                // Drop down option
+                for(let i = 0; i < itemsList.length; i++){
+                    let newOption = document.createElement("OPTION");
+                    newOption.value = i;
+                    newOption.innerHTML = i;
+                    currentPageNumber.add(newOption);
+                }
+
                 for(let i = 0;i<obj[0].length;i++){
+                    
                     /* append current content of the letterspage1 first values first name of the Arabic
                     letter as an id and the first image or image path to be displayed*/
                     output += '<li id="'+obj[0][i].name+'"class="col-2">'+'<img src="'+obj[0][i].image+'">'+'</li>';
@@ -83,11 +88,16 @@ function qaida(){
                 reset();
                 // Iterate of previous page or page divs indexes to be displayed by minus 1
                 itemsList[current - 1].style.display = 'block';
-                // Iterate to current page number by minus 1
-                currentNumber = current-1+'/40';
-                // Set the current page number to be displayed
-                currentPageNumber.innerHTML = currentNumber;
-                // Loop the current object index minus one to get the previous index 
+                
+                // Drop down option
+                for(let i = 0; i < itemsList.length; i++){
+                    let newOption = document.createElement("OPTION");
+                    newOption.value = i;
+                    newOption.innerHTML = i;
+                    currentPageNumber.add(newOption);
+                    currentPageNumber.selectedIndex = current - 1;
+                }
+
                 for(let i = 0;i<obj[current - 1].length;i++){
                     if(obj[current - 1] === obj[2]){//Page 3
                         
@@ -104,6 +114,7 @@ function qaida(){
                         obj[2][0].sectThree.forEach((three) =>{
                             outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
                             itemsListInner[2].innerHTML = outputThree;
+                            
                         });
     
                     }else{//Default output below
@@ -126,11 +137,16 @@ function qaida(){
                 reset();
                 // Iterate of next page or page divs indexes to be displayed by adding 1 each time
                 itemsList[current + 1].style.display = 'block';
-                // Iterate to current page number by adding 1
-                currentNumber = current+1+'/40';
-                // Set the current page number to be displayed
-                currentPageNumber.innerHTML = currentNumber;
-                // Loop the current object index adding one to get the next index each time
+
+                // Drop down option
+                for(let i = 0; i < itemsList.length; i++){
+                    let newOption = document.createElement("OPTION");
+                    newOption.value = i;
+                    newOption.innerHTML = i;
+                    currentPageNumber.add(newOption);
+                    currentPageNumber.selectedIndex = current+ 1;
+                }
+                
                 for(let i = 0;i<obj[current + 1].length;i++){
             
                     if(obj[current + 1] === obj[2]){//Page 3
@@ -150,6 +166,11 @@ function qaida(){
                             itemsListInner[2].innerHTML = outputThree;
                         });
     
+                    }else if(obj[current + 1] === obj[3]){
+                        obj[3][0].sectOne.forEach((one) => {
+                            output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
+                            itemsListInner[0].innerHTML = output;                            
+                        });
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time
@@ -158,6 +179,7 @@ function qaida(){
                         itemsList[current + 1].innerHTML = output;
                         
                     }
+                    
                 }
                 current++;
             }//--Closing brace nextPage()
@@ -177,7 +199,7 @@ function qaida(){
                 }       
                 nextPage();
             });
-
+            
             // Call the function to display the first page content
             startQaida();
 
