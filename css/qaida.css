@@ -48,23 +48,11 @@ body {
 
 /*Online Qaida */
 
-<<<<<<< HEAD
 #alphabet .container {
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%); 
-=======
-#alphabet {
-   min-height: 100vh; 
-}
-
-#alphabet .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
->>>>>>> 1ad911232de8f404fe031a4f9d7e3d2c4a6e02fd
 }
 
 #alphabet img {

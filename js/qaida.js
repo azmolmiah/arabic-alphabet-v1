@@ -167,24 +167,10 @@ function qaida(){
                         });
     
                     }else if(obj[current + 1] === obj[3]){
-<<<<<<< HEAD
                         obj[3][0].sectOne.forEach((one) => {
                             output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
                             itemsListInner[0].innerHTML = output;                            
                         });
-=======
-                        
-                        obj[3][0].sectOne.forEach((one) =>{
-                            output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[3].innerHTML = output;
-                        });
-
-                        obj[3][0].sectTwo.forEach((two) =>{
-                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[4].innerHTML = outputTwo;
-                        });
-
->>>>>>> 1ad911232de8f404fe031a4f9d7e3d2c4a6e02fd
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time

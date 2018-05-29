@@ -577,11 +577,7 @@
     ],
     "letterspage4":[
         {
-<<<<<<< HEAD
             "sectOne": [
-=======
-            "sectOne":[
->>>>>>> 1ad911232de8f404fe031a4f9d7e3d2c4a6e02fd
                 {
                     "name":"baa",
                     "image":"img/pg4/ba.png"
@@ -664,19 +660,11 @@
                 },
                 {
                     "name":"Noon",
-<<<<<<< HEAD
                     "image":"img/noon.png"
                 },
                 {
                     "name":"haa",
                     "image":"img/pg4/ha.png"
-=======
-                    "image":"img/pg4/noon.png"
-                },
-                {
-                    "name":"haa",
-                    "image":"img/pg4/haa.png"
->>>>>>> 1ad911232de8f404fe031a4f9d7e3d2c4a6e02fd
                 },
                 {
                     "name":"Hamza",
@@ -684,7 +672,6 @@
                 },
                 {
                     "name":"Yaa",
-<<<<<<< HEAD
                     "image":"img/yaa.png"
                 }
             ],
@@ -692,159 +679,7 @@
                 
             ]
         }
-=======
-                    "image":"img/pg4/yaa.png"
-                }
-            ],
->>>>>>> 1ad911232de8f404fe031a4f9d7e3d2c4a6e02fd
 
-            "sectTwo":[
-                {
-                    "name":"Hamza",
-                    "image":"img/pg4b/hamz.png"
-                },
-                {
-                    "name":"Laam",
-                    "image":"img/pg4b/laam.png"
-                },
-                {
-                    "name":"Hamza",
-                    "image":"img/pg4b/hamza.png"
-                },
-                {
-                    "name":"baa",
-                    "image":"img/pg4b/ba.png"
-                },
-                {
-                    "name":"Swaad",
-                    "image":"img/pg4b/swad.png"
-                },
-                {
-                    "name":"khaa",
-                    "image":"img/pg4b/kha.png"
-                },
-                {
-                    "name":"Faa",
-                    "image":"img/pg4b/fa.png"
-                },
-                {
-                    "name":"thsaa",
-                    "image":"img/pg4b/thsaa.png"
-                },
-                {
-                    "name":"haa",
-                    "image":"img/pg4b/ha.png"
-                },
-                {
-                    "name":"Noon",
-                    "image":"img/pg4b/noon.png"
-                },
-                {
-                    "name":"Daal",
-                    "image":"img/pg4b/daal.png"
-                },
-                {
-                    "name":"Ckaff",
-                    "image":"img/pg4b/caaf.png"
-                },
-                {
-                    "name":"jeem",
-                    "image":"img/pg4b/jeem.png"
-                },
-                {
-                    "name":"Ghayn",
-                    "image":"img/pg4b/ayn.png"
-                },
-                {
-                    "name":"thaa",
-                    "image":"img/pg4b/tha.png"
-                },
-                {
-                    "name":"Dwaad",
-                    "image":"img/pg4b/dwad.png"
-                },
-                {
-                    "name":"Yaa",
-                    "image":"img/pg4b/yaa.png"
-                },
-                {
-                    "name":"baa",
-                    "image":"img/pg4b/ba.png"
-                },
-                {
-                    "name":"jeem",
-                    "image":"img/pg4b/jeem.png"
-                },
-                {
-                    "name":"Yaa",
-                    "image":"img/pg4b/yaa.png"
-                },
-                {
-                    "name":"Laam",
-                    "image":"img/pg4b/laam.png"
-                },
-                {
-                    "name":"Ghayn",
-                    "image":"img/pg4b/ayn.png"
-                },
-                {
-                    "name":"thsaa",
-                    "image":"img/pg4b/thsaa.png"
-                },
-                {
-                    "name":"Raa",
-                    "image":"img/pg4b/raa.png"
-                },
-                {
-                    "name":"Swaad",
-                    "image":"img/pg4b/swad.png"
-                },
-                {
-                    "name":"Kaaf",
-                    "image":"img/pg4b/kaaf.png"
-                },
-                {
-                    "name":"Ghayn",
-                    "image":"img/pg4b/ghayn.png"
-                },
-                {
-                    "name":"Sheen",
-                    "image":"img/pg4b/sheen.png"
-                },
-                {
-                    "name":"Zsaal",
-                    "image":"img/pg4b/zsaal.png"
-                },
-                {
-                    "name":"Hamza",
-                    "image":"img/pg4b/hamza.png"
-                },
-                {
-                    "name":"Faa",
-                    "image":"img/pg4b/fa.png"
-                },
-                {
-                    "name":"Zaa",
-                    "image":"img/pg4b/zaa.png"
-                },
-                {
-                    "name":"Haa",
-                    "image":"img/pg4b/haa.png"
-                },
-                {
-                    "name":"haa",
-                    "image":"img/pg4b/ha.png"
-                },
-                {
-                    "name":"Ckaff",
-                    "image":"img/pg4b/caaf.png"
-                },
-                {
-                    "name":"Dwaad",
-                    "image":"img/pg4b/dwad.png"
-                }
-            ]
-        }
     ]
 }
 
