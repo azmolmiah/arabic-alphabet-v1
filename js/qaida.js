@@ -40,15 +40,16 @@ function qaida(){
             let currentNumber;
             let output;
             let outputTwo;
-            let outputThree;
-
+            let outputThree;          
+            
             /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
             function reset(){
                 // Loop through all the page divs
                 for(let i = 0; i < itemsList.length; i++){
                     // Set each page div to not display
-                    itemsList[i].style.display = 'none';    
+                    itemsList[i].style.display = 'none';
+                        
                 }
                 // Set output to empty string to clear content
                 output = ' ';
@@ -62,14 +63,6 @@ function qaida(){
                 reset();
                 // Set the first page div to display
                 itemsList[0].style.display = 'block';
-                
-                // Drop down option
-                for(let i = 0; i < itemsList.length; i++){
-                    let newOption = document.createElement("OPTION");
-                    newOption.value = i;
-                    newOption.innerHTML = i;
-                    currentPageNumber.add(newOption);
-                }
 
                 for(let i = 0;i<obj[0].length;i++){
                     
@@ -78,6 +71,15 @@ function qaida(){
                     output += '<li id="'+obj[0][i].name+'"class="col-2">'+'<img src="'+obj[0][i].image+'">'+'</li>';
                     // Output above in the first page div
                     itemsList[0].innerHTML = output;
+
+                    currentPageNumber.addEventListener('change', options);
+
+                    function options(e){
+                        console.log(e);
+                        output += '<li id="'+obj[0][i].name+'"class="col-2">'+'<img src="'+obj[0][i].image+'">'+'</li>';
+                        // Output above in the first page div
+                        itemsList[currentPageNumber.value].innerHTML = output;
+                    }
                 } 
             }//--closing brace startQaida()
 
@@ -90,13 +92,7 @@ function qaida(){
                 itemsList[current - 1].style.display = 'block';
                 
                 // Drop down option
-                for(let i = 0; i < itemsList.length; i++){
-                    let newOption = document.createElement("OPTION");
-                    newOption.value = i;
-                    newOption.innerHTML = i;
-                    currentPageNumber.add(newOption);
-                    currentPageNumber.selectedIndex = current - 1;
-                }
+                currentPageNumber.selectedIndex = current - 1;
 
                 for(let i = 0;i<obj[current - 1].length;i++){
                     if(obj[current - 1] === obj[2]){//Page 3
@@ -139,17 +135,13 @@ function qaida(){
                 itemsList[current + 1].style.display = 'block';
 
                 // Drop down option
-                for(let i = 0; i < itemsList.length; i++){
-                    let newOption = document.createElement("OPTION");
-                    newOption.value = i;
-                    newOption.innerHTML = i;
-                    currentPageNumber.add(newOption);
-                    currentPageNumber.selectedIndex = current+ 1;
-                }
-                
+                currentPageNumber.selectedIndex = current+ 1;
+
+
+
                 for(let i = 0;i<obj[current + 1].length;i++){
             
-                    if(obj[current + 1] === obj[2] || currentPageNumber.selectedIndex == 2){//Page 3
+                    if(obj[current + 1] === obj[2]){//Page 3
                         
                         obj[2][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
@@ -183,7 +175,7 @@ function qaida(){
                 }
                 current++;
             }//--Closing brace nextPage()
-
+            
             //Get the previous button and add event 
             prev.addEventListener('click',function(){
                 if(current === 0){
@@ -218,6 +210,18 @@ function qaida(){
                     sound.play();
                 }         
             }
+
+            currentPageNumber.addEventListener('change', options);
+
+            function options(e){           
+                reset();
+                itemsList[e.target.value].style.display = 'block';
+                for(let i = 0;i<obj[e.target.value].length;i++){
+                    output += '<li id="'+obj[e.target.value][i].name+'"class="col-2">'+'<img src="'+obj[e.target.value][i].image+'">'+'</li>';
+                    itemsList[e.target.value].innerHTML = output;
+                }
+            }
+          
 
         }//--closing brace if readystate and status
 
