@@ -74,12 +74,6 @@ function qaida(){
 
                     currentPageNumber.addEventListener('change', options);
 
-                    function options(e){
-                        console.log(e);
-                        output += '<li id="'+obj[0][i].name+'"class="col-2">'+'<img src="'+obj[0][i].image+'">'+'</li>';
-                        // Output above in the first page div
-                        itemsList[currentPageNumber.value].innerHTML = output;
-                    }
                 } 
             }//--closing brace startQaida()
 
@@ -112,7 +106,19 @@ function qaida(){
                             itemsListInner[2].innerHTML = outputThree;
                             
                         });
-    
+                    
+                    }else if(obj[current - 1] === obj[3]){
+                        
+                        obj[3][0].sectOne.forEach((one) =>{
+                            output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
+                            itemsListInner[3].innerHTML = output;
+                        });
+                        
+                        obj[3][0].sectTwo.forEach((two) =>{
+                            output += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[4].innerHTML = output;
+                        });
+
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time
@@ -137,8 +143,6 @@ function qaida(){
                 // Drop down option
                 currentPageNumber.selectedIndex = current+ 1;
 
-
-
                 for(let i = 0;i<obj[current + 1].length;i++){
             
                     if(obj[current + 1] === obj[2]){//Page 3
@@ -157,12 +161,19 @@ function qaida(){
                             outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
                             itemsListInner[2].innerHTML = outputThree;
                         });
-    
+                    
                     }else if(obj[current + 1] === obj[3]){
-                        obj[3][0].sectOne.forEach((one) => {
-                            output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[0].innerHTML = output;                            
+                        
+                        obj[3][0].sectOne.forEach((one) =>{
+                            output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
+                            itemsListInner[3].innerHTML = output;
                         });
+
+                        obj[3][0].sectTwo.forEach((two) =>{
+                            output += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[4].innerHTML = output;
+                        });
+                        
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time
@@ -213,15 +224,50 @@ function qaida(){
 
             currentPageNumber.addEventListener('change', options);
 
+            // =========================================== SELECT OPTIONS ======================================= //
             function options(e){           
                 reset();
                 itemsList[e.target.value].style.display = 'block';
                 for(let i = 0;i<obj[e.target.value].length;i++){
-                    output += '<li id="'+obj[e.target.value][i].name+'"class="col-2">'+'<img src="'+obj[e.target.value][i].image+'">'+'</li>';
-                    itemsList[e.target.value].innerHTML = output;
+                    if(obj[e.target.value] === obj[2]){//Page 3
+                        
+                        obj[2][0].sectOne.forEach((one) =>{
+                            output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
+                            itemsListInner[0].innerHTML = output;
+                        });
+                        
+                        obj[2][0].sectTwo.forEach((two) =>{
+                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[1].innerHTML = outputTwo;
+                        });
+
+                        obj[2][0].sectThree.forEach((three) =>{
+                            outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
+                            itemsListInner[2].innerHTML = outputThree;
+                        });
+                    
+                    }else if(obj[e.target.value] === obj[3]){
+                        
+                        obj[3][0].sectOne.forEach((one) =>{
+                            output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
+                            itemsListInner[3].innerHTML = output;
+                        });
+
+                        obj[3][0].sectTwo.forEach((two) =>{
+                            output += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[4].innerHTML = output;
+                        });
+    
+                    }else{//Default output below
+                        
+                        // display the current object index add one properties of name and image everytime going to next each time
+                        output += '<li id="'+obj[e.target.value][i].name+'"class="col-2">'+'<img src="'+obj[e.target.value][i].image+'">'+'</li>';
+                        // Output or display in page divs by minus one each time going to previous
+                        itemsList[e.target.value].innerHTML = output;
+                        
+                    }
                 }
             }
-          
 
         }//--closing brace if readystate and status
 

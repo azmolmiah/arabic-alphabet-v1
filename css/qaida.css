@@ -56,7 +56,7 @@ body {
 }
 
 #alphabet img {
-    height: auto;
+    min-height: auto;
     width: 100%; 
     cursor: pointer;
     border: 1px solid #000;
@@ -103,4 +103,8 @@ select::-ms-expand {	display: none; }
 select{
     -webkit-appearance: none;
     appearance: none;
+}
+
+.custom-select {
+    cursor: pointer!important;
 }
