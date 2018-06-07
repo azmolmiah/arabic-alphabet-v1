@@ -72,8 +72,6 @@ function qaida(){
                     // Output above in the first page div
                     itemsList[0].innerHTML = output;
 
-                    currentPageNumber.addEventListener('change', options);
-
                 } 
             }//--closing brace startQaida()
 
@@ -115,8 +113,8 @@ function qaida(){
                         });
                         
                         obj[3][0].sectTwo.forEach((two) =>{
-                            output += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[4].innerHTML = output;
+                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[4].innerHTML = outputTwo;
                         });
 
                     }else{//Default output below
@@ -170,8 +168,8 @@ function qaida(){
                         });
 
                         obj[3][0].sectTwo.forEach((two) =>{
-                            output += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[4].innerHTML = output;
+                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[4].innerHTML = outputTwo;
                         });
                         
                     }else{//Default output below
@@ -254,8 +252,8 @@ function qaida(){
                         });
 
                         obj[3][0].sectTwo.forEach((two) =>{
-                            output += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[4].innerHTML = output;
+                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            itemsListInner[4].innerHTML = outputTwo;
                         });
     
                     }else{//Default output below
