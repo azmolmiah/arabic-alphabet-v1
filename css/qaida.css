@@ -19,7 +19,7 @@ body {
 }
 
 .container {
-    max-width: 675px !important;
+    max-width: 30% !important;
 }
 
 .btn-outline-light:hover {
@@ -52,7 +52,9 @@ body {
    position: absolute;
    top: 50%;
    left: 50%;
-   transform: translate(-50%, -50%); 
+   transform: translate(-50%, -50%);
+   min-height: auto;
+   width: 30%; 
 }
 
 #alphabet img {
