@@ -1,4 +1,7 @@
 /*Global*/
+.fa {
+    font-size: 24px;
+}
 ul {
     -webkit-margin-before:0!important;
     -webkit-margin-after:0!important;
@@ -19,7 +22,7 @@ body {
 }
 
 .container {
-    max-width: 30% !important;
+    max-width: 675px !important;
 }
 
 .btn-outline-light:hover {
@@ -54,7 +57,7 @@ body {
    left: 50%;
    transform: translate(-50%, -50%);
    min-height: auto;
-   width: 30%; 
+   width: 100%; 
 }
 
 #alphabet img {

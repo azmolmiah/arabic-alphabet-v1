@@ -40,8 +40,21 @@ function qaida(){
             let currentNumber;
             let output;
             let outputTwo;
-            let outputThree;          
+            let outputThree;   
             
+            // Local storage set bookmark
+            
+            
+            let bookMark = document.getElementById('bookmark');
+            bookMark.addEventListener('click', lclStrge);
+
+            function lclStrge () {
+                localStorage.clear();
+                localStorage.setItem('output', JSON.stringify(output));
+            }
+            
+            let retrievedObject = localStorage.getItem('output');
+            console.log('retrievedObject: ', JSON.parse(retrievedObject));
             /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
             function reset(){
@@ -49,14 +62,13 @@ function qaida(){
                 for(let i = 0; i < itemsList.length; i++){
                     // Set each page div to not display
                     itemsList[i].style.display = 'none';
-                        
                 }
                 // Set output to empty string to clear content
                 output = ' ';
                 outputTwo = ' ';
                 outputThree = ' ';
             }
-
+            
             // Set the first page to be displayed when windows loaded
             function startQaida(){
                 // reset the page to clear first
@@ -244,7 +256,7 @@ function qaida(){
                             itemsListInner[2].innerHTML = outputThree;
                         });
                     
-                    }else if(obj[e.target.value] === obj[3]){
+                    }else if(obj[e.target.value] === obj[3] && obj[current-1] === obj[3] && ob[current+1] === obj[3]){
                         
                         obj[3][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
