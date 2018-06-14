@@ -37,24 +37,10 @@ function qaida(){
             let current = 0;
 
             // set empty variable for use multiple times for current page number content
-            let currentNumber;
             let output;
             let outputTwo;
             let outputThree;   
-            
-            // Local storage set bookmark
-            
-            
-            let bookMark = document.getElementById('bookmark');
-            bookMark.addEventListener('click', lclStrge);
 
-            function lclStrge () {
-                localStorage.clear();
-                localStorage.setItem('output', JSON.stringify(output));
-            }
-            
-            let retrievedObject = localStorage.getItem('output');
-            console.log('retrievedObject: ', JSON.parse(retrievedObject));
             /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
             function reset(){
@@ -233,7 +219,7 @@ function qaida(){
             }
 
             currentPageNumber.addEventListener('change', options);
-
+            
             // =========================================== SELECT OPTIONS ======================================= //
             function options(e){           
                 reset();
@@ -256,7 +242,7 @@ function qaida(){
                             itemsListInner[2].innerHTML = outputThree;
                         });
                     
-                    }else if(obj[e.target.value] === obj[3] && obj[current-1] === obj[3] && ob[current+1] === obj[3]){
+                    }else if(obj[e.target.value] === obj[3]){
                         
                         obj[3][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
@@ -277,6 +263,33 @@ function qaida(){
                         
                     }
                 }
+            }
+
+            //Local storage set bookmark
+            let bookMark = document.getElementById('bookmark');
+            
+            bookMark.addEventListener('click', bkMark);
+
+            function bkMark () {
+                localStorage.setItem('letters', JSON.stringify(output));
+            }
+
+            let bookMarkRef = document.getElementById('bookMarkRef');
+
+            bookMarkRef.addEventListener('click', getBookMark);
+
+            function getBookMark(e){
+                reset();
+                e.preventDefault();
+                console.log(e);
+                let bookmarks = JSON.parse(localStorage.getItem('letters'));
+                output += bookmarks;
+                itemsList[1].innerHTML = output;
+                console.log(bookmarks);      
+                for(let i = 0; i < itemsList.length; i++){
+                    // Set each page div to not display
+                    itemsList[i].style.display = 'block';
+                }    
             }
 
         }//--closing brace if readystate and status

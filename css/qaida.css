@@ -110,6 +110,10 @@ select{
     appearance: none;
 }
 
-.custom-select {
+.custom-select, #bookmark  {
     cursor: pointer!important;
+}
+
+#bookMark {
+    float: right;
 }
