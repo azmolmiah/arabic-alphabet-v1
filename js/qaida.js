@@ -283,12 +283,10 @@ function qaida(){
                 e.preventDefault();
                 reset();
                 currentPageNumber.selectedIndex = JSON.parse(localStorage.getItem('currentPageNumber'));
-                output = JSON.parse(localStorage.letters);
-
-                for(let i = 0; i < itemsList.length; i++){
-                    // Set each page div to not display
-                    itemsList[JSON.parse(localStorage.currentPageNumber)].style.display = 'block';
-                }
+                output += JSON.parse(localStorage.letters);
+                itemsList[JSON.parse(localStorage.currentPageNumber)].innerHTML = output;
+                itemsList[JSON.parse(localStorage.currentPageNumber)].style.display = 'block';
+               
             }
 
         }//--closing brace if readystate and status
