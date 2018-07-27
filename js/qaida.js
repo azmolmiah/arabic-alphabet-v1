@@ -270,6 +270,7 @@ function qaida(){
             
             function bookMark () {
                 
+                localStorage.setItem('currentPageNumber', JSON.stringify(currentPageNumber.selectedIndex));
                 localStorage.setItem('letters', JSON.stringify(output));
            
             }
@@ -281,6 +282,7 @@ function qaida(){
             function getBookMark(e){
                 reset();
                 e.preventDefault();
+                currentPageNumber.selectedIndex = JSON.parse(localStorage.getItem('currentPageNumber'));
                 output = JSON.parse(localStorage.getItem('letters'));
                 for(let i = 0; i < itemsList.length; i++){
                     // Set each page div to not display
