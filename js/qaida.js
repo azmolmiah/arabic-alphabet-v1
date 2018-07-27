@@ -280,13 +280,14 @@ function qaida(){
             document.getElementById('bookMarkRef').addEventListener('click', getBookMark);
 
             function getBookMark(e){
-                reset();
                 e.preventDefault();
+                reset();
                 currentPageNumber.selectedIndex = JSON.parse(localStorage.getItem('currentPageNumber'));
-                output = JSON.parse(localStorage.getItem('letters'));
+                output = JSON.parse(localStorage.letters);
+
                 for(let i = 0; i < itemsList.length; i++){
                     // Set each page div to not display
-                    itemsList[i].style.display = 'block';
+                    itemsList[JSON.parse(localStorage.currentPageNumber)].style.display = 'block';
                 }
             }
 
