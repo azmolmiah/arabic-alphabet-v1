@@ -266,30 +266,26 @@ function qaida(){
             }
 
             //Local storage set bookmark
-            let bookMark = document.getElementById('bookmark');
+            document.getElementById('bookmark').addEventListener('click', bookMark);
             
-            bookMark.addEventListener('click', bkMark);
-
-            function bkMark () {
+            function bookMark () {
+                
                 localStorage.setItem('letters', JSON.stringify(output));
+           
             }
 
-            let bookMarkRef = document.getElementById('bookMarkRef');
+            // Local storage get bookmark
 
-            bookMarkRef.addEventListener('click', getBookMark);
+            document.getElementById('bookMarkRef').addEventListener('click', getBookMark);
 
             function getBookMark(e){
                 reset();
                 e.preventDefault();
-                console.log(e);
-                let bookmarks = JSON.parse(localStorage.getItem('letters'));
-                output += bookmarks;
-                itemsList[1].innerHTML = output;
-                console.log(bookmarks);      
+                output = JSON.parse(localStorage.getItem('letters'));
                 for(let i = 0; i < itemsList.length; i++){
                     // Set each page div to not display
                     itemsList[i].style.display = 'block';
-                }    
+                }
             }
 
         }//--closing brace if readystate and status

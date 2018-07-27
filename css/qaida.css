@@ -1,4 +1,7 @@
 /*Global*/
+body {
+    color: #fff;
+}
 .fa {
     font-size: 24px;
 }
@@ -104,6 +107,10 @@ body {
     outline: none;
 }
 
+.navbar a li {
+    color: #fff;
+    margin-left: 1em;
+}
 select::-ms-expand {	display: none; }
 select{
     -webkit-appearance: none;
