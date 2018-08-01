@@ -13,7 +13,7 @@ function qaida(){
     let currentPageNumber = document.querySelector('#pageNumber');
     // Get all the pages to be displayed
     let itemsList = document.querySelectorAll('.letters');
-    let itemsListInner = document.querySelectorAll('.sect');
+    
     // Get the next or next page element
     let next = document.querySelector('#next');
     // Get the previous or previous page element
@@ -89,17 +89,17 @@ function qaida(){
                         
                         obj[2][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[0].innerHTML = output;
+                            itemsList[2].childNodes[0].innerHTML = output;
                         });
                         
                         obj[2][0].sectTwo.forEach((two) =>{
                             outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[1].innerHTML = outputTwo;
+                            itemsList[2].childNodes[1].innerHTML = outputTwo;
                         });
 
                         obj[2][0].sectThree.forEach((three) =>{
                             outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
-                            itemsListInner[2].innerHTML = outputThree;
+                            itemsList[2].childNodes[2].innerHTML = outputThree;
                             
                         });
                     
@@ -107,12 +107,12 @@ function qaida(){
                         
                         obj[3][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[3].innerHTML = output;
+                            itemsList[3].childNodes[0].innerHTML = output;
                         });
                         
                         obj[3][0].sectTwo.forEach((two) =>{
                             outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[4].innerHTML = outputTwo;
+                            itemsList[3].childNodes[1].innerHTML = outputTwo;
                         });
 
                     }else{//Default output below
@@ -145,29 +145,29 @@ function qaida(){
                         
                         obj[2][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[0].innerHTML = output;
+                            itemsList[2].childNodes[0].innerHTML = output;
                         });
                         
                         obj[2][0].sectTwo.forEach((two) =>{
                             outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[1].innerHTML = outputTwo;
+                            itemsList[2].childNodes[1].innerHTML = outputTwo;
                         });
 
                         obj[2][0].sectThree.forEach((three) =>{
                             outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
-                            itemsListInner[2].innerHTML = outputThree;
+                            itemsList[2].childNodes[2].innerHTML = outputThree;
                         });
                     
                     }else if(obj[current + 1] === obj[3]){
                         
                         obj[3][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[3].innerHTML = output;
+                            itemsList[3].childNodes[0].innerHTML = output;
                         });
 
                         obj[3][0].sectTwo.forEach((two) =>{
                             outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[4].innerHTML = outputTwo;
+                            itemsList[3].childNodes[1].innerHTML = outputTwo;
                         });
                         
                     }else{//Default output below
@@ -225,35 +225,36 @@ function qaida(){
                 reset();
                 // Set current to option target value
                 current = JSON.parse(e.target.value);
+
                 itemsList[e.target.value].style.display = 'block';
                 for(let i = 0;i<obj[e.target.value].length;i++){
                     if(obj[e.target.value] === obj[2]){//Page 3
                         
                         obj[2][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[0].innerHTML = output;
+                            itemsList[2].childNodes[0].innerHTML = output;
                         });
                         
                         obj[2][0].sectTwo.forEach((two) =>{
                             outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[1].innerHTML = outputTwo;
+                            itemsList[2].childNodes[1].innerHTML = outputTwo;
                         });
 
                         obj[2][0].sectThree.forEach((three) =>{
                             outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
-                            itemsListInner[2].innerHTML = outputThree;
+                            itemsList[2].childNodes[2].innerHTML = outputThree;
                         });
                     
                     }else if(obj[e.target.value] === obj[3]){
                         
                         obj[3][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsListInner[3].innerHTML = output;
+                            itemsList[2].childNodes[0].innerHTML = output;
                         });
 
                         obj[3][0].sectTwo.forEach((two) =>{
                             outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
-                            itemsListInner[4].innerHTML = outputTwo;
+                            itemsList[3].childNodes[1].innerHTML = outputTwo;
                         });
     
                     }else{//Default output below
@@ -272,9 +273,9 @@ function qaida(){
             
             function bookMark () {
                 localStorage.setItem('currentPageNumber', JSON.stringify(currentPageNumber.selectedIndex));
-                // localStorage.setItem('letters', JSON.stringify(output));
-                // console.log(outputTwo);
-
+                localStorage.setItem('letters', JSON.stringify(output));
+                localStorage.setItem('lettersTwo', JSON.stringify(outputTwo));
+                localStorage.setItem('lettersThree', JSON.stringify(outputThree));
             }
 
             // Local storage get bookmark
@@ -282,11 +283,17 @@ function qaida(){
 
             function getBookMark(e){
                 e.preventDefault();
-                // reset();
+                reset();
+                current = JSON.parse(localStorage.getItem('currentPageNumber'));
                 currentPageNumber.selectedIndex = JSON.parse(localStorage.getItem('currentPageNumber'));
-                // output += JSON.parse(localStorage.letters);
-                // itemsList[JSON.parse(localStorage.currentPageNumber)].innerHTML = output;
-                // itemsList[JSON.parse(localStorage.currentPageNumber)].style.display = 'block';               
+                output += JSON.parse(localStorage.letters);
+                itemsList[JSON.parse(localStorage.currentPageNumber)].innerHTML = output;
+                itemsList[JSON.parse(localStorage.currentPageNumber)].style.display = 'block';     
+                outputTwo += JSON.parse(localStorage.lettersTwo);
+                outputThree += JSON.parse(localStorage.lettersThree);
+                itemsList[JSON.parse(localStorage.currentPageNumber)].childNodes[0].innerHTML = output;
+                itemsList[JSON.parse(localStorage.currentPageNumber)].childNodes[1].innerHTML = outputTwo;
+                itemsList[JSON.parse(localStorage.currentPageNumber)].childNodes[2].innerHTML = outputThree;
             }
 
         }//--closing brace if readystate and status
