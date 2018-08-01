@@ -223,6 +223,8 @@ function qaida(){
             // =========================================== SELECT OPTIONS ======================================= //
             function options(e){           
                 reset();
+                // Set current to option target value
+                current = JSON.parse(e.target.value);
                 itemsList[e.target.value].style.display = 'block';
                 for(let i = 0;i<obj[e.target.value].length;i++){
                     if(obj[e.target.value] === obj[2]){//Page 3
@@ -269,24 +271,22 @@ function qaida(){
             document.getElementById('bookmark').addEventListener('click', bookMark);
             
             function bookMark () {
-                
                 localStorage.setItem('currentPageNumber', JSON.stringify(currentPageNumber.selectedIndex));
-                localStorage.setItem('letters', JSON.stringify(output));
-           
+                // localStorage.setItem('letters', JSON.stringify(output));
+                // console.log(outputTwo);
+
             }
 
             // Local storage get bookmark
-
             document.getElementById('bookMarkRef').addEventListener('click', getBookMark);
 
             function getBookMark(e){
                 e.preventDefault();
-                reset();
+                // reset();
                 currentPageNumber.selectedIndex = JSON.parse(localStorage.getItem('currentPageNumber'));
-                output += JSON.parse(localStorage.letters);
-                itemsList[JSON.parse(localStorage.currentPageNumber)].innerHTML = output;
-                itemsList[JSON.parse(localStorage.currentPageNumber)].style.display = 'block';
-               
+                // output += JSON.parse(localStorage.letters);
+                // itemsList[JSON.parse(localStorage.currentPageNumber)].innerHTML = output;
+                // itemsList[JSON.parse(localStorage.currentPageNumber)].style.display = 'block';               
             }
 
         }//--closing brace if readystate and status
