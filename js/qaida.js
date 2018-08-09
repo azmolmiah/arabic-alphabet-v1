@@ -249,7 +249,7 @@ function qaida(){
                         
                         obj[3][0].sectOne.forEach((one) =>{
                             output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
-                            itemsList[2].childNodes[0].innerHTML = output;
+                            itemsList[3].childNodes[0].innerHTML = output;
                         });
 
                         obj[3][0].sectTwo.forEach((two) =>{
