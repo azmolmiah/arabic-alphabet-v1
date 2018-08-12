@@ -116,7 +116,21 @@ function qaida(){
                         });
 
                     }else if(obj[current - 1] === obj[4]){
-                        console.log(obj[4]);
+                        
+                        obj[4][0].sectOne.forEach((one) => {
+                            output += '<li id="'+one.name+'"class="col-2"><img src="'+one.image+'"></li>';
+                            itemsList[4].childNodes[0].innerHTML = output;
+                        });
+
+                        obj[4][0].sectTwo.forEach((two) =>{
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
+                            itemsList[4].childNodes[1].innerHTML = outputTwo;
+                        });
+
+                        obj[4][0].sectThree.forEach((three) =>{
+                            outputThree += '<li id="'+three.name+'"class="col-1"><img src="'+three.image+'"></li>';
+                            itemsList[4].childNodes[2].innerHTML = outputThree;
+                        });
 
                     }else{//Default output below
                         
@@ -275,6 +289,23 @@ function qaida(){
                         obj[3][0].sectTwo.forEach((two) =>{
                             outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
                             itemsList[3].childNodes[1].innerHTML = outputTwo;
+                        });
+
+                    }else if(obj[e.target.value] === obj[4]){
+
+                        obj[4][0].sectOne.forEach((one) => {
+                            output += '<li id="'+one.name+'"class="col-2"><img src="'+one.image+'"></li>';
+                            itemsList[4].childNodes[0].innerHTML = output;
+                        });
+
+                        obj[4][0].sectTwo.forEach((two) =>{
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
+                            itemsList[4].childNodes[1].innerHTML = outputTwo;
+                        });
+
+                        obj[4][0].sectThree.forEach((three) =>{
+                            outputThree += '<li id="'+three.name+'"class="col-1"><img src="'+three.image+'"></li>';
+                            itemsList[4].childNodes[2].innerHTML = outputThree;
                         });
     
                     }else{//Default output below
