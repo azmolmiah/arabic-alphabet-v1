@@ -66,7 +66,7 @@ function qaida(){
                     
                     /* append current content of the letterspage1 first values first name of the Arabic
                     letter as an id and the first image or image path to be displayed*/
-                    output += '<li id="'+obj[0][i].name+'"class="col-2">'+'<img src="'+obj[0][i].image+'">'+'</li>';
+                    output += '<li id="'+obj[0][i].name+'"class="col-2"><img src="'+obj[0][i].image+'"></li>';
                     // Output above in the first page div
                     itemsList[0].innerHTML = output;
 
@@ -88,17 +88,17 @@ function qaida(){
                     if(obj[current - 1] === obj[2]){//Page 3
                         
                         obj[2][0].sectOne.forEach((one) =>{
-                            output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
+                            output += '<li id="'+one.name+'"class="col-1"><img src="'+one.image+'"></li>';
                             itemsList[2].childNodes[0].innerHTML = output;
                         });
                         
                         obj[2][0].sectTwo.forEach((two) =>{
-                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
                             itemsList[2].childNodes[1].innerHTML = outputTwo;
                         });
 
                         obj[2][0].sectThree.forEach((three) =>{
-                            outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
+                            outputThree += '<li id="'+three.name+'"class="col-1"><img src="'+three.image+'"></li>';
                             itemsList[2].childNodes[2].innerHTML = outputThree;
                             
                         });
@@ -106,19 +106,22 @@ function qaida(){
                     }else if(obj[current - 1] === obj[3]){
                         
                         obj[3][0].sectOne.forEach((one) =>{
-                            output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
+                            output += '<li id="'+one.name+'"class="col-2"><img src="'+one.image+'"></li>';
                             itemsList[3].childNodes[0].innerHTML = output;
                         });
                         
                         obj[3][0].sectTwo.forEach((two) =>{
-                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
                             itemsList[3].childNodes[1].innerHTML = outputTwo;
                         });
+
+                    }else if(obj[current - 1] === obj[4]){
+                        console.log(obj[4]);
 
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time
-                        output += '<li id="'+obj[current - 1][i].name+'"class="col-2">'+'<img src="'+obj[current - 1][i].image+'">'+'</li>';
+                        output += '<li id="'+obj[current - 1][i].name+'"class="col-2"><img src="'+obj[current - 1][i].image+'"></li>';
                         // Output or display in page divs by minus one each time going to previous
                         itemsList[current - 1].innerHTML = output;
                         
@@ -144,36 +147,53 @@ function qaida(){
                     if(obj[current + 1] === obj[2]){//Page 3
                         
                         obj[2][0].sectOne.forEach((one) =>{
-                            output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
+                            output += '<li id="'+one.name+'"class="col-1"><img src="'+one.image+'"></li>';
                             itemsList[2].childNodes[0].innerHTML = output;
                         });
                         
                         obj[2][0].sectTwo.forEach((two) =>{
-                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
                             itemsList[2].childNodes[1].innerHTML = outputTwo;
                         });
 
                         obj[2][0].sectThree.forEach((three) =>{
-                            outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
+                            outputThree += '<li id="'+three.name+'"class="col-1"><img src="'+three.image+'"></li>';
                             itemsList[2].childNodes[2].innerHTML = outputThree;
                         });
                     
                     }else if(obj[current + 1] === obj[3]){
                         
                         obj[3][0].sectOne.forEach((one) =>{
-                            output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
+                            output += '<li id="'+one.name+'"class="col-2"><img src="'+one.image+'"></li>';
                             itemsList[3].childNodes[0].innerHTML = output;
                         });
 
                         obj[3][0].sectTwo.forEach((two) =>{
-                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
                             itemsList[3].childNodes[1].innerHTML = outputTwo;
                         });
-                        
+                    
+                    }else if(obj[current + 1] === obj[4]){//Page 4
+
+                        obj[4][0].sectOne.forEach((one) => {
+                            output += '<li id="'+one.name+'"class="col-2"><img src="'+one.image+'"></li>';
+                            itemsList[4].childNodes[0].innerHTML = output;
+                        });
+
+                        obj[4][0].sectTwo.forEach((two) =>{
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
+                            itemsList[4].childNodes[1].innerHTML = outputTwo;
+                        });
+
+                        obj[4][0].sectThree.forEach((three) =>{
+                            outputThree += '<li id="'+three.name+'"class="col-1"><img src="'+three.image+'"></li>';
+                            itemsList[4].childNodes[2].innerHTML = outputThree;
+                        });
+
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time
-                        output += '<li id="'+obj[current + 1][i].name+'"class="col-2">'+'<img src="'+obj[current + 1][i].image+'">'+'</li>';
+                        output += '<li id="'+obj[current + 1][i].name+'"class="col-2"><img src="'+obj[current + 1][i].image+'"></li>';
                         // Output or display in page divs by minus one each time going to previous
                         itemsList[current + 1].innerHTML = output;
                         
@@ -231,36 +251,36 @@ function qaida(){
                     if(obj[e.target.value] === obj[2]){//Page 3
                         
                         obj[2][0].sectOne.forEach((one) =>{
-                            output += '<li id="'+one.name+'"class="col-1">'+'<img src="'+one.image+'">'+'</li>';
+                            output += '<li id="'+one.name+'"class="col-1"><img src="'+one.image+'"></li>';
                             itemsList[2].childNodes[0].innerHTML = output;
                         });
                         
                         obj[2][0].sectTwo.forEach((two) =>{
-                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
                             itemsList[2].childNodes[1].innerHTML = outputTwo;
                         });
 
                         obj[2][0].sectThree.forEach((three) =>{
-                            outputThree += '<li id="'+three.name+'"class="col-1">'+'<img src="'+three.image+'">'+'</li>';
+                            outputThree += '<li id="'+three.name+'"class="col-1"><img src="'+three.image+'"></li>';
                             itemsList[2].childNodes[2].innerHTML = outputThree;
                         });
                     
                     }else if(obj[e.target.value] === obj[3]){
                         
                         obj[3][0].sectOne.forEach((one) =>{
-                            output += '<li id="'+one.name+'"class="col-2">'+'<img src="'+one.image+'">'+'</li>';
+                            output += '<li id="'+one.name+'"class="col-2"><img src="'+one.image+'"></li>';
                             itemsList[3].childNodes[0].innerHTML = output;
                         });
 
                         obj[3][0].sectTwo.forEach((two) =>{
-                            outputTwo += '<li id="'+two.name+'"class="col-1">'+'<img src="'+two.image+'">'+'</li>';
+                            outputTwo += '<li id="'+two.name+'"class="col-1"><img src="'+two.image+'"></li>';
                             itemsList[3].childNodes[1].innerHTML = outputTwo;
                         });
     
                     }else{//Default output below
                         
                         // display the current object index add one properties of name and image everytime going to next each time
-                        output += '<li id="'+obj[e.target.value][i].name+'"class="col-2">'+'<img src="'+obj[e.target.value][i].image+'">'+'</li>';
+                        output += '<li id="'+obj[e.target.value][i].name+'"class="col-2"><img src="'+obj[e.target.value][i].image+'"></li>';
                         // Output or display in page divs by minus one each time going to previous
                         itemsList[e.target.value].innerHTML = output;
                         
