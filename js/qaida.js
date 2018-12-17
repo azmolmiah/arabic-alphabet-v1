@@ -37,6 +37,7 @@ function qaida() {
             just before the new content is loaded*/
       function reset() {
         currentPage.innerHTML = "";
+        output = "";
       }
 
       // Set the first page to be displayed when windows loaded
@@ -61,13 +62,20 @@ function qaida() {
       /* Set previous page function to be used when its called and display content each time
             going to previous page*/
       function previousPage() {
-        // Reset or clear the page of any content everytime the previous page is called or loaded
         reset();
         // Drop down option
         currentPageNumber.selectedIndex = current - 1;
 
         for (let i = 0; i < obj[current - 1].length; i++) {
-          if (obj[current - 1] === obj[current]) {
+          if (obj[current - 1]) {
+            output +=
+              '<li id="' +
+              obj[current - 1][i].name +
+              '"class="col-2"><img src="' +
+              obj[current - 1][i].image +
+              '"></li>';
+            // Output above in the first page div
+            currentPage.innerHTML = output;
           }
         }
         //
@@ -77,14 +85,20 @@ function qaida() {
       /* Set next page function to be used when its called and display content each time
             going to next page*/
       function nextPage() {
-        // Reset or clear the page of any content everytime the next page is called or loaded
         reset();
-
         // Drop down option
         currentPageNumber.selectedIndex = current + 1;
 
         for (let i = 0; i < obj[current + 1].length; i++) {
-          if (obj[current + 1] === obj[current]) {
+          if (obj[current + 1]) {
+            output +=
+              '<li id="' +
+              obj[current + 1][i].name +
+              '"class="col-2"><img src="' +
+              obj[current + 1][i].image +
+              '"></li>';
+            // Output above in the first page div
+            currentPage.innerHTML = output;
           }
         }
         current++;
