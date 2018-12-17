@@ -29,6 +29,7 @@ function qaida() {
       // parsing the json data from the json file as an object// Get property values of the keys in an array
       let response = JSON.parse(xhttp.responseText);
       let obj = Object.values(response);
+
       /*Set a variable with the value of 0 to use to iterate over pages, to display current
             page number, iterate current index of page divs or obj variable arrays*/
       let current = 0;
@@ -40,23 +41,26 @@ function qaida() {
         output = "";
       }
 
-      // Set the first page to be displayed when windows loaded
-      function startQaida() {
-        // reset the page to clear first
-        reset();
-
-        for (let i = 0; i < obj[0].length; i++) {
+      function getAllLetters(hello) {
+        for (let i = 0; i < obj[hello].length; i++) {
           /* append current content of the letterspage1 first values first name of the Arabic
                     letter as an id and the first image or image path to be displayed*/
           output +=
             '<li id="' +
-            obj[0][i].name +
+            obj[hello][i].name +
             '"class="col-2"><img src="' +
-            obj[0][i].image +
+            obj[hello][i].image +
             '"></li>';
           // Output above in the first page div
           currentPage.innerHTML = output;
         }
+      }
+
+      // Set the first page to be displayed when windows loaded
+      function startQaida() {
+        // reset the page to clear first
+        reset();
+        getAllLetters(0);
       } //--closing brace startQaida()
 
       /* Set previous page function to be used when its called and display content each time
@@ -65,20 +69,7 @@ function qaida() {
         reset();
         // Drop down option
         currentPageNumber.selectedIndex = current - 1;
-
-        for (let i = 0; i < obj[current - 1].length; i++) {
-          if (obj[current - 1]) {
-            output +=
-              '<li id="' +
-              obj[current - 1][i].name +
-              '"class="col-2"><img src="' +
-              obj[current - 1][i].image +
-              '"></li>';
-            // Output above in the first page div
-            currentPage.innerHTML = output;
-          }
-        }
-        //
+        getAllLetters(current - 1);
         current--;
       } //--Closing brace previousPage()
 
@@ -88,19 +79,7 @@ function qaida() {
         reset();
         // Drop down option
         currentPageNumber.selectedIndex = current + 1;
-
-        for (let i = 0; i < obj[current + 1].length; i++) {
-          if (obj[current + 1]) {
-            output +=
-              '<li id="' +
-              obj[current + 1][i].name +
-              '"class="col-2"><img src="' +
-              obj[current + 1][i].image +
-              '"></li>';
-            // Output above in the first page div
-            currentPage.innerHTML = output;
-          }
-        }
+        getAllLetters(current + 1);
         current++;
       } //--Closing brace nextPage()
 
@@ -131,18 +110,14 @@ function qaida() {
         }
       }
 
+      // =========================================== SELECT OPTIONS ======================================= //
       currentPageNumber.addEventListener("change", options);
 
-      // =========================================== SELECT OPTIONS ======================================= //
       function options(e) {
         reset();
         // Set current to option target value
         current = Number(e.target.value);
-
-        for (let i = 0; i < obj[e.target.value].length; i++) {
-          if (obj[e.target.value] === obj[current]) {
-          }
-        }
+        getAllLetters(e.target.value);
       }
 
       //Local storage set bookmark
