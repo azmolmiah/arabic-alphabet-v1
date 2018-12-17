@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/qaida.css" />
+    <title>Little Arrow | Online Qaida</title>
+  </head>
+
+  <body>
+    <!-- Top Section -->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+      <div class="container">
+        <a href="qaida.html" class="navbar-brand">Little Arrow</a>
+        <span id="bookmark" class="fa fa-bookmark-o"></span>
+        <button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto" id="navContainer">
+            <a href=""><li>Settings</li></a>
+            <a href="" id="bookMarkRef"><li>Bookmark</li></a>
+            <a href=""><li>Play</li></a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Arabic Alphabets -->
+    <section id="alphabet">
+      <div class="container"><ul class="letters"></ul></div>
+    </section>
+
+    <!-- Bottom Nav -->
+    <section id="bottomnav">
+      <nav class="navbar navbar-dark bottom-navbar py-2 fixed-bottom">
+        <div class="container">
+          <button id="next" class="btn btn-outline-light">Next</button>
+          <select id="pageNumber" class="custom-select mr-sm-2"></select>
+          <button id="prev" class="btn btn-outline-light">Prev</button>
+        </div>
+      </nav>
+    </section>
+
+    <script src="js/qaida.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
