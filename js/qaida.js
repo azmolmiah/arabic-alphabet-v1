@@ -37,25 +37,27 @@ function qaida() {
       /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
       function reset() {
-        currentPage.innerHTML = "";
+        while (currentPage.firstChild) {
+          currentPage.removeChild(currentPage.firstChild);
+        }
         output = "";
       }
 
-      function getAllLetters(hello) {
-        for (let i = 0; i < obj[hello].length; i++) {
+      function getAllLetters(indexNum) {
+        for (let i = 0; i < obj[indexNum].length; i++) {
           /* append current content of the letterspage1 first values first name of the Arabic
                     letter as an id and the first image or image path to be displayed*/
           output +=
             '<li id="' +
-            obj[hello][i].name +
+            obj[indexNum][i].name +
             '"class="col-2"><img src="' +
-            obj[hello][i].image +
+            obj[indexNum][i].image +
             '"></li>';
           // Output above in the first page div
           currentPage.innerHTML = output;
         }
       }
-
+      console.log(obj);
       // Set the first page to be displayed when windows loaded
       function startQaida() {
         // reset the page to clear first
