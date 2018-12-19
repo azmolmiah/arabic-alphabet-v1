@@ -44,20 +44,37 @@ function qaida() {
       }
 
       function getAllLetters(indexNum) {
-        for (let i = 0; i < obj[indexNum].length; i++) {
-          /* append current content of the letterspage1 first values first name of the Arabic
-                    letter as an id and the first image or image path to be displayed*/
-          output +=
-            '<li id="' +
-            obj[indexNum][i].name +
-            '"class="col-2"><img src="' +
-            obj[indexNum][i].image +
-            '"></li>';
-          // Output above in the first page div
-          currentPage.innerHTML = output;
+        if (indexNum === 0 || indexNum === 1) {
+          for (let i = 0; i < obj[indexNum].length; i++) {
+            /* append current content of the letterspage1 first values first name of the Arabic
+                      letter as an id and the first image or image path to be displayed*/
+            output +=
+              '<li id="' +
+              obj[indexNum][i].name +
+              '"class="col-2"><img src="' +
+              obj[indexNum][i].image +
+              '"></li>';
+            // Output above in the first page div
+            currentPage.innerHTML = output;
+          }
+        } else {
+          for (let i = 0; i < obj[indexNum].length; i++) {
+            /* append current content of the letterspage1 first values first name of the Arabic
+                      letter as an id and the first image or image path to be displayed*/
+            obj[indexNum][0].sectOne.forEach(one => {
+              output +=
+                '<li id="' +
+                one.name +
+                '"class="col-1"><img src="' +
+                one.image +
+                '"></li>';
+              // Output above in the first page div
+              currentPage.innerHTML = output;
+            });
+          }
         }
       }
-      console.log(obj);
+
       // Set the first page to be displayed when windows loaded
       function startQaida() {
         // reset the page to clear first
@@ -65,8 +82,7 @@ function qaida() {
         getAllLetters(0);
       } //--closing brace startQaida()
 
-      /* Set previous page function to be used when its called and display content each time
-            going to previous page*/
+      //display content each time going to previous page
       function previousPage() {
         reset();
         // Drop down option
@@ -75,8 +91,7 @@ function qaida() {
         current--;
       } //--Closing brace previousPage()
 
-      /* Set next page function to be used when its called and display content each time
-            going to next page*/
+      // display content each time going to next page*
       function nextPage() {
         reset();
         // Drop down option
