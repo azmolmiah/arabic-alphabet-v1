@@ -58,20 +58,18 @@ function qaida() {
             currentPage.innerHTML = output;
           }
         } else {
-          for (let i = 0; i < obj[indexNum].length; i++) {
-            /* append current content of the letterspage1 first values first name of the Arabic
+          /* append current content of the letterspage1 first values first name of the Arabic
                       letter as an id and the first image or image path to be displayed*/
-            obj[indexNum][0].sectOne.forEach(one => {
-              output +=
-                '<li id="' +
-                one.name +
-                '"class="col-1"><img src="' +
-                one.image +
-                '"></li>';
-              // Output above in the first page div
-              currentPage.innerHTML = output;
-            });
-          }
+          obj[indexNum][0].sectOne.forEach(one => {
+            output +=
+              '<li id="' +
+              one.name +
+              '"class="col-1"><img src="' +
+              one.image +
+              '"></li>';
+            // Output above in the first page div
+            currentPage.innerHTML = output;
+          });
         }
       }
 
