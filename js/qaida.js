@@ -34,6 +34,18 @@ function qaida() {
             page number, iterate current index of page divs or obj variable arrays*/
       let current = 0;
       let output;
+      let outputTwo;
+
+      // Add second row
+      let sectionElement = document.createElement("ul");
+      sectionElement.className = "letters mt-3";
+      let sectionElementThree = document.createElement("ul");
+      sectionElementThree.className = "letters mt-3";
+      const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
+      const sectionThree = currentPage.parentElement.appendChild(
+        sectionElementThree
+      );
+
       /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
       function reset() {
@@ -41,6 +53,8 @@ function qaida() {
           currentPage.removeChild(currentPage.firstChild);
         }
         output = "";
+        outputTwo = "";
+        outputThree = "";
       }
 
       function getAllLetters(indexNum) {
@@ -60,18 +74,61 @@ function qaida() {
         } else {
           /* append current content of the letterspage1 first values first name of the Arabic
                       letter as an id and the first image or image path to be displayed*/
-          obj[indexNum][0].sectOne.forEach(one => {
-            output +=
-              '<li id="' +
-              one.name +
-              '"class="col-1"><img src="' +
-              one.image +
-              '"></li>';
-            // Output above in the first page div
-            currentPage.innerHTML = output;
-          });
+          if (obj[indexNum].length == 2) {
+            obj[indexNum][0].sectOne.forEach(one => {
+              output +=
+                '<li id="' +
+                one.name +
+                '"class="col-1"><img src="' +
+                one.image +
+                '"></li>';
+              currentPage.innerHTML = output;
+            });
+
+            obj[indexNum][1].sectTwo.forEach(two => {
+              outputTwo +=
+                '<li id="' +
+                two.name +
+                '"class="col-1"><img src="' +
+                two.image +
+                '"></li>';
+              sectionTwo.innerHTML = outputTwo;
+            });
+          } else {
+            obj[indexNum][0].sectOne.forEach(one => {
+              output +=
+                '<li id="' +
+                one.name +
+                '"class="col-1"><img src="' +
+                one.image +
+                '"></li>';
+              currentPage.innerHTML = output;
+            });
+
+            obj[indexNum][1].sectTwo.forEach(two => {
+              outputTwo +=
+                '<li id="' +
+                two.name +
+                '"class="col-1"><img src="' +
+                two.image +
+                '"></li>';
+              sectionTwo.innerHTML = outputTwo;
+            });
+
+            obj[indexNum][2].sectThree.forEach(three => {
+              outputThree +=
+                '<li id="' +
+                three.name +
+                '"class="col-1"><img src="' +
+                three.image +
+                '"></li>';
+              sectionThree.innerHTML = outputThree;
+            });
+          }
         }
       }
+
+      console.log(obj[4]);
 
       // Set the first page to be displayed when windows loaded
       function startQaida() {
