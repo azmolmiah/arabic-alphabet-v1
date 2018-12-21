@@ -41,6 +41,7 @@ function qaida() {
       sectionElement.className = "letters mt-3";
       let sectionElementThree = document.createElement("ul");
       sectionElementThree.className = "letters mt-3";
+
       const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
       const sectionThree = currentPage.parentElement.appendChild(
         sectionElementThree
@@ -70,10 +71,20 @@ function qaida() {
               '"></li>';
             // Output above in the first page div
             currentPage.innerHTML = output;
+            sectionTwo.innerHTML = "";
+            sectionThree.innerHTML = "";
           }
         } else {
-          /* append current content of the letterspage1 first values first name of the Arabic
-                      letter as an id and the first image or image path to be displayed*/
+          function twoSections(display, number, page) {
+            display +=
+              '<li id="' +
+              number.name +
+              '"class="col-1"><img src="' +
+              number.image +
+              '"></li>';
+            page.innerHTML = display;
+          }
+          // If page has two sections
           if (obj[indexNum].length == 2) {
             obj[indexNum][0].sectOne.forEach(one => {
               output +=
@@ -94,7 +105,9 @@ function qaida() {
                 '"></li>';
               sectionTwo.innerHTML = outputTwo;
             });
-          } else {
+            sectionThree.innerHTML = "";
+          } else if (obj[indexNum].length == 3) {
+            // If page has three sections
             obj[indexNum][0].sectOne.forEach(one => {
               output +=
                 '<li id="' +
@@ -127,8 +140,6 @@ function qaida() {
           }
         }
       }
-
-      console.log(obj[4]);
 
       // Set the first page to be displayed when windows loaded
       function startQaida() {
@@ -172,7 +183,7 @@ function qaida() {
       });
 
       // For each letter add event listener and the sound function
-      currentPage.addEventListener("click", playSound);
+      currentPage.parentElement.addEventListener("click", playSound);
       function playSound(e) {
         // Get id name of each sound image thats outputed
         let pathId = e.path[1].id;
@@ -180,7 +191,9 @@ function qaida() {
         if (sound.paused) {
           sound.play();
         }
+        console.log(e);
       }
+      console.log(currentPage.parentElement);
 
       // =========================================== SELECT OPTIONS ======================================= //
       currentPageNumber.addEventListener("change", options);
