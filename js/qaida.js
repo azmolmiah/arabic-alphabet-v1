@@ -139,11 +139,13 @@ function qaida() {
         // reset the page to clear first
         reset();
         getAllLetters(0);
+        checkBookMark();
       } //--closing brace startQaida()
 
       //display content each time going to previous page
       function previousPage() {
         reset();
+
         // Drop down option
         currentPageNumber.selectedIndex = current - 1;
         getAllLetters(current - 1);
@@ -153,6 +155,7 @@ function qaida() {
       // display content each time going to next page*
       function nextPage() {
         reset();
+
         // Drop down option
         currentPageNumber.selectedIndex = current + 1;
         getAllLetters(current + 1);
@@ -165,6 +168,7 @@ function qaida() {
           current = obj.length;
         }
         previousPage();
+        checkBookMark();
       });
 
       //Get the next button and add event
@@ -173,6 +177,7 @@ function qaida() {
           current = -1;
         }
         nextPage();
+        checkBookMark();
       });
 
       // For each letter add event listener and the sound function
@@ -192,17 +197,31 @@ function qaida() {
 
       function options(e) {
         reset();
+        checkBookMark();
         // Set current to option target value
         current = Number(e.target.value);
         getAllLetters(e.target.value);
       }
 
+      //Check Bookmark and fill if current bookMark
+      let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
+      function checkBookMark() {
+        if (pageNumber === current) {
+          bookMarkIcon.classList.remove("fa-bookmark-o");
+          bookMarkIcon.classList.add("fa-bookmark");
+        } else {
+          bookMarkIcon.classList.remove("fa-bookmark");
+          bookMarkIcon.classList.add("fa-bookmark-o");
+        }
+      }
+
       //Local storage set bookmark
-      document.getElementById("bookmark").addEventListener("click", bookMark);
+      let bookMarkIcon = document.getElementById("bookmark");
+      bookMarkIcon.addEventListener("click", bookMark);
 
       function bookMark(e) {
         e.preventDefault();
-
+        checkBookMark();
         let arabicletters;
 
         if (localStorage.getItem("letters") == null) {
@@ -220,14 +239,13 @@ function qaida() {
       }
 
       // Local storage get bookmark
-      document
-        .getElementById("bookMarkRef")
-        .addEventListener("click", getBookMark);
+      let bookMarkRef = document.getElementById("bookMarkRef");
+      bookMarkRef.addEventListener("click", getBookMark);
 
       function getBookMark(e) {
         e.preventDefault();
         reset();
-
+        checkBookMark();
         let arabicletters;
 
         if (localStorage.getItem("letters") == null) {
@@ -299,7 +317,6 @@ function qaida() {
           });
         }
 
-        const pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
         currentPageNumber.selectedIndex = pageNumber;
         current = pageNumber;
       }
