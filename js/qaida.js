@@ -39,10 +39,10 @@ function qaida() {
       // Add second row
       const sectionElement = document.createElement("ul");
       sectionElement.className = "letters mt-3";
+      const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
+
       const sectionElementThree = document.createElement("ul");
       sectionElementThree.className = "letters mt-3";
-
-      const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
       const sectionThree = currentPage.parentElement.appendChild(
         sectionElementThree
       );
@@ -203,10 +203,14 @@ function qaida() {
         getAllLetters(e.target.value);
       }
 
+      //Local storage set bookmark
+      let bookMarkIcon = document.getElementById("bookmark");
+      bookMarkIcon.addEventListener("click", bookMark);
+
       //Check Bookmark and fill if current bookMark
-      let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
-      function checkBookMark() {
-        if (pageNumber === current) {
+
+      function checkBookMark(pagenumber) {
+        if (pagenumber === current) {
           bookMarkIcon.classList.remove("fa-bookmark-o");
           bookMarkIcon.classList.add("fa-bookmark");
         } else {
@@ -215,13 +219,10 @@ function qaida() {
         }
       }
 
-      //Local storage set bookmark
-      let bookMarkIcon = document.getElementById("bookmark");
-      bookMarkIcon.addEventListener("click", bookMark);
-
       function bookMark(e) {
         e.preventDefault();
-        checkBookMark();
+        checkBookMark(Number(currentPageNumber.value));
+
         let arabicletters;
 
         if (localStorage.getItem("letters") == null) {
@@ -243,16 +244,11 @@ function qaida() {
       bookMarkRef.addEventListener("click", getBookMark);
 
       function getBookMark(e) {
-        e.preventDefault();
         reset();
-        checkBookMark();
-        let arabicletters;
+        e.preventDefault();
 
-        if (localStorage.getItem("letters") == null) {
-          arabicletters;
-        } else {
-          arabicletters = JSON.parse(localStorage.getItem("letters"));
-        }
+        checkBookMark();
+        let arabicletters = JSON.parse(localStorage.getItem("letters"));
 
         for (let i = 0; i < arabicletters.length; i++) {
           output +=
@@ -265,6 +261,7 @@ function qaida() {
         }
 
         if (arabicletters.length == 2) {
+          output = "";
           arabicletters[0].sectOne.forEach(one => {
             output +=
               '<li id="' +
@@ -285,6 +282,7 @@ function qaida() {
             sectionTwo.innerHTML = outputTwo;
           });
         } else if (arabicletters.length == 3) {
+          output = "";
           // If page has three sections
           arabicletters[0].sectOne.forEach(one => {
             output +=
@@ -316,7 +314,7 @@ function qaida() {
             sectionThree.innerHTML = outputThree;
           });
         }
-
+        let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
         currentPageNumber.selectedIndex = pageNumber;
         current = pageNumber;
       }
