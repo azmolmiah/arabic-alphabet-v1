@@ -47,6 +47,8 @@ function qaida() {
         sectionElementThree
       );
 
+      let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
+
       /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
       function reset() {
@@ -168,7 +170,7 @@ function qaida() {
           current = obj.length;
         }
         previousPage();
-        checkBookMark();
+        checkBookMark(pageNumber);
       });
 
       //Get the next button and add event
@@ -177,11 +179,11 @@ function qaida() {
           current = -1;
         }
         nextPage();
-        checkBookMark();
+        checkBookMark(pageNumber);
       });
 
-      // For each letter add event listener and the sound function
-      currentPage.parentElement.addEventListener("click", playSound);
+      // ========================================= Sound Function ======================================= //
+      currentPage.parentElement.addEventListener("mousedown", playSound);
       function playSound(e) {
         // Get id name of each sound image thats outputed
         const pathId = e.path[1].id;
@@ -197,12 +199,13 @@ function qaida() {
 
       function options(e) {
         reset();
-        checkBookMark();
+        checkBookMark(pageNumber);
         // Set current to option target value
         current = Number(e.target.value);
         getAllLetters(e.target.value);
       }
 
+      // =========================================== Book Mark ================================== //
       //Local storage set bookmark
       let bookMarkIcon = document.getElementById("bookmark");
       bookMarkIcon.addEventListener("click", bookMark);
@@ -220,8 +223,7 @@ function qaida() {
       }
 
       function bookMark(e) {
-        e.preventDefault();
-        checkBookMark(Number(currentPageNumber.value));
+        checkBookMark(Number(currentPageNumber.selectedIndex));
 
         let arabicletters;
 
@@ -237,6 +239,7 @@ function qaida() {
 
         localStorage.setItem("letters", JSON.stringify(arabicletters));
         localStorage.setItem("pageNumber", JSON.stringify(current));
+        e.preventDefault();
       }
 
       // Local storage get bookmark
@@ -244,10 +247,14 @@ function qaida() {
       bookMarkRef.addEventListener("click", getBookMark);
 
       function getBookMark(e) {
+        currentPageNumber.selectedIndex = JSON.parse(
+          localStorage.getItem("pageNumber")
+        );
+        current = pageNumber;
+
         reset();
         e.preventDefault();
-
-        checkBookMark();
+        checkBookMark(pageNumber);
         let arabicletters = JSON.parse(localStorage.getItem("letters"));
 
         for (let i = 0; i < arabicletters.length; i++) {
@@ -314,9 +321,6 @@ function qaida() {
             sectionThree.innerHTML = outputThree;
           });
         }
-        let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
-        currentPageNumber.selectedIndex = pageNumber;
-        current = pageNumber;
       }
 
       // Call the function to display the first page content
