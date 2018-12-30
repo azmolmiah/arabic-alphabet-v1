@@ -47,8 +47,6 @@ function qaida() {
         sectionElementThree
       );
 
-      let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
-
       /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
       function reset() {
@@ -141,7 +139,6 @@ function qaida() {
         // reset the page to clear first
         reset();
         getAllLetters(0);
-        checkBookMark();
       } //--closing brace startQaida()
 
       //display content each time going to previous page
@@ -236,6 +233,7 @@ function qaida() {
       }
 
       // =========================================== Book Mark ================================== //
+      let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
       //Local storage set bookmark
       let bookMarkIcon = document.getElementById("bookmark");
       bookMarkIcon.addEventListener("click", bookMark);
@@ -253,19 +251,9 @@ function qaida() {
       }
 
       function bookMark(e) {
-        checkBookMark(Number(currentPageNumber.selectedIndex));
+        checkBookMark(JSON.parse(localStorage.getItem("pageNumber")));
 
-        let arabicletters;
-
-        if (localStorage.getItem("letters") == null) {
-          arabicletters;
-        } else {
-          arabicletters = JSON.parse(localStorage.getItem("letters"));
-        }
-
-        // if (obj[current] == obj[0] || obj[current] == 1) {
-        arabicletters = obj[current];
-        // }
+        let arabicletters = obj[current];
 
         localStorage.setItem("letters", JSON.stringify(arabicletters));
         localStorage.setItem("pageNumber", JSON.stringify(current));
@@ -287,17 +275,17 @@ function qaida() {
         checkBookMark(pageNumber);
         let arabicletters = JSON.parse(localStorage.getItem("letters"));
 
-        for (let i = 0; i < arabicletters.length; i++) {
-          output +=
-            '<li id="' +
-            arabicletters[i].name +
-            '"class="col-2"><img src="' +
-            arabicletters[i].image +
-            '"></li>';
-          currentPage.innerHTML = output;
-        }
-
-        if (arabicletters.length == 2) {
+        if (arabicletters.length == 0) {
+          for (let i = 0; i < arabicletters.length; i++) {
+            output +=
+              '<li id="' +
+              arabicletters[i].name +
+              '"class="col-2"><img src="' +
+              arabicletters[i].image +
+              '"></li>';
+            currentPage.innerHTML = output;
+          }
+        } else if (arabicletters.length == 2) {
           output = "";
           arabicletters[0].sectOne.forEach(one => {
             output +=
