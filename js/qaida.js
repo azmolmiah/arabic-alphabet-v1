@@ -194,13 +194,11 @@ function qaida() {
           playIndex++;
         }
         sound.src = folder + obj[current][playIndex].name + extension;
-        console.log(sound.src);
         sound.play();
       }
 
       function playPause() {
         if (sound.paused) {
-          sound.play();
           playPaused.classList.remove("fa-play");
           playPaused.classList.add("fa-pause");
           switchSound();
