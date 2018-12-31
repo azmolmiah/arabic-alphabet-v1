@@ -180,35 +180,35 @@ function qaida() {
       });
 
       // ========================================= Sound Function ======================================= //
-      let playIndex = 0;
-      let playPaused = document.getElementById("playBtn");
-      sound.loop = false;
+      // let playIndex = 0;
+      // let playPaused = document.getElementById("playBtn");
+      // sound.loop = false;
 
-      playPaused.addEventListener("click", playPause);
+      // playPaused.addEventListener("click", playPause);
 
-      sound.addEventListener("ended", switchSound);
-      function switchSound() {
-        playPaused.classList.remove("fa-pause");
-        playPaused.classList.add("fa-play");
-        if (playIndex == obj[current].length - 1) {
-          playIndex = 0;
-        } else {
-          playIndex++;
-        }
-        sound.src = folder + obj[current][playIndex].name + extension;
-        sound.play();
-      }
+      // sound.addEventListener("ended", switchSound);
+      // function switchSound() {
+      //   playPaused.classList.remove("fa-pause");
+      //   playPaused.classList.add("fa-play");
+      //   if (playIndex == obj[current].length - 1) {
+      //     playIndex = 0;
+      //   } else {
+      //     playIndex++;
+      //   }
+      //   sound.src = folder + obj[current][playIndex].name + extension;
+      //   sound.play();
+      // }
 
-      function playPause() {
-        if (sound.paused) {
-          sound.play();
-          playPaused.classList.remove("fa-play");
-          playPaused.classList.add("fa-pause");
-        } else {
-          sound.pause();
-          switchSound();
-        }
-      }
+      // function playPause() {
+      //   if (sound.paused) {
+      //     sound.play();
+      //     playPaused.classList.remove("fa-play");
+      //     playPaused.classList.add("fa-pause");
+      //   } else {
+      //     sound.pause();
+      //     switchSound();
+      //   }
+      // }
 
       // Play clicking individual sounds
       currentPage.parentElement.addEventListener("mousedown", playSound);
@@ -229,7 +229,7 @@ function qaida() {
         checkBookMark(pageNumber);
         // Set current to option target value
         current = Number(e.target.value);
-        getAllLetters(e.target.value);
+        getAllLetters(current);
       }
 
       // =========================================== Book Mark ================================== //
@@ -352,4 +352,4 @@ function qaida() {
   xhttp.send();
 }
 // Add event listen to the window object to load above function and funtions within
-window.addEventListener("load", qaida);
+window.addEventListener("DOMContentLoaded", qaida);
