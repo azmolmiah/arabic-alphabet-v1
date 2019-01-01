@@ -188,19 +188,7 @@ function qaida() {
 
       // console.log(obj[current]);
 
-      function playPause(e) {
-        console.log(e);
-        sound.addEventListener("ended", switchSound);
-        function switchSound() {
-          if (playIndex == obj[current].length - 1) {
-            playIndex = 0;
-          } else {
-            playIndex++;
-          }
-          sound.src = folder + obj[current][playIndex].name + extension;
-          console.log(playIndex);
-          sound.play();
-        }
+      function playPause() {
         if (sound.paused) {
           playPaused.classList.remove("fa-play");
           playPaused.classList.add("fa-pause");
@@ -209,6 +197,18 @@ function qaida() {
           sound.pause();
           playPaused.classList.remove("fa-pause");
           playPaused.classList.add("fa-play");
+        }
+        sound.addEventListener("ended", switchSound);
+        function switchSound() {
+          sound.src = folder + obj[current][playIndex].name + extension;
+          playIndex++;
+          sound.play();
+          if (playIndex == obj[current].length) {
+            sound.addEventListener("ended", () => {
+              playPaused.classList.remove("fa-pause");
+              playPaused.classList.add("fa-play");
+            });
+          }
         }
       }
 
