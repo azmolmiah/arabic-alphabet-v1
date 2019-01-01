@@ -180,24 +180,27 @@ function qaida() {
       });
 
       // ========================================= Sound Function ======================================= //
+      sound.loop = false;
       let playIndex = 0;
       let playPaused = document.getElementById("playBtn");
-      sound.loop = false;
 
       playPaused.addEventListener("mousedown", playPause);
 
-      sound.addEventListener("ended", switchSound);
-      function switchSound() {
-        if (playIndex == obj[current].length - 1) {
-          playIndex = 0;
-        } else {
-          playIndex++;
-        }
-        sound.src = folder + obj[current][playIndex].name + extension;
-        sound.play();
-      }
+      // console.log(obj[current]);
 
-      function playPause() {
+      function playPause(e) {
+        console.log(e);
+        sound.addEventListener("ended", switchSound);
+        function switchSound() {
+          if (playIndex == obj[current].length - 1) {
+            playIndex = 0;
+          } else {
+            playIndex++;
+          }
+          sound.src = folder + obj[current][playIndex].name + extension;
+          console.log(playIndex);
+          sound.play();
+        }
         if (sound.paused) {
           playPaused.classList.remove("fa-play");
           playPaused.classList.add("fa-pause");
