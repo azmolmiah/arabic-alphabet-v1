@@ -1,26 +1,26 @@
+// Set empty sound variable, Setting the Audio Object, concatenate file extensions
+let folder = "audio/";
+let extension = ".mp3";
+let sound;
+sound = new Audio();
+
+// Get all the pages to be displayed
+let currentPage = document.querySelector(".letters");
+
+// Get current number element and add options
+const currentPageNumber = document.getElementById("pageNumber");
+let options;
+for (let i = 0; i <= 40; i++) {
+  options += `<option>${i}</option>`;
+}
+currentPageNumber.innerHTML += options;
+
+// Get the next or next page element// Get the previous or previous page element
+let next = document.querySelector("#next");
+let prev = document.querySelector("#prev");
+
 // qaida function when window or page loads
 function qaida() {
-  // Set empty sound variable, Setting the Audio Object, concatenate file extensions
-  let folder = "audio/";
-  let extension = ".mp3";
-  let sound;
-  sound = new Audio();
-
-  // Get all the pages to be displayed
-  let currentPage = document.querySelector(".letters");
-
-  // Get current number element and add options
-  const currentPageNumber = document.getElementById("pageNumber");
-  let options;
-  for (let i = 0; i <= 40; i++) {
-    options += `<option>${i}</option>`;
-  }
-  currentPageNumber.innerHTML += options;
-
-  // Get the next or next page element// Get the previous or previous page element
-  let next = document.querySelector("#next");
-  let prev = document.querySelector("#prev");
-
   // Create new XMLHttpRequest request
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -60,6 +60,36 @@ function qaida() {
         sectionThree.innerHTML = "";
       }
 
+      function outputOneSection(one) {
+        output +=
+          '<li id="' +
+          one.name +
+          '"class="col-1"><img src="' +
+          one.image +
+          '"></li>';
+        currentPage.innerHTML = output;
+      }
+
+      function outputTwoSection(two) {
+        outputTwo +=
+          '<li id="' +
+          two.name +
+          '"class="col-1"><img src="' +
+          two.image +
+          '"></li>';
+        sectionTwo.innerHTML = outputTwo;
+      }
+
+      function outputThreeSection(three) {
+        outputThree +=
+          '<li id="' +
+          three.name +
+          '"class="col-1"><img src="' +
+          three.image +
+          '"></li>';
+        sectionThree.innerHTML = outputThree;
+      }
+
       function getAllLetters(indexNum) {
         if (indexNum === 0 || indexNum === 1) {
           for (let i = 0; i < obj[indexNum].length; i++) {
@@ -80,55 +110,25 @@ function qaida() {
           // If page has two sections
           if (obj[indexNum].length == 2) {
             obj[indexNum][0].sectOne.forEach(one => {
-              output +=
-                '<li id="' +
-                one.name +
-                '"class="col-1"><img src="' +
-                one.image +
-                '"></li>';
-              currentPage.innerHTML = output;
+              outputOneSection(one);
             });
 
             obj[indexNum][1].sectTwo.forEach(two => {
-              outputTwo +=
-                '<li id="' +
-                two.name +
-                '"class="col-1"><img src="' +
-                two.image +
-                '"></li>';
-              sectionTwo.innerHTML = outputTwo;
+              outputTwoSection(two);
             });
             // sectionThree.innerHTML = "";
           } else if (obj[indexNum].length == 3) {
             // If page has three sections
             obj[indexNum][0].sectOne.forEach(one => {
-              output +=
-                '<li id="' +
-                one.name +
-                '"class="col-1"><img src="' +
-                one.image +
-                '"></li>';
-              currentPage.innerHTML = output;
+              outputOneSection(one);
             });
 
             obj[indexNum][1].sectTwo.forEach(two => {
-              outputTwo +=
-                '<li id="' +
-                two.name +
-                '"class="col-1"><img src="' +
-                two.image +
-                '"></li>';
-              sectionTwo.innerHTML = outputTwo;
+              outputTwoSection(two);
             });
 
             obj[indexNum][2].sectThree.forEach(three => {
-              outputThree +=
-                '<li id="' +
-                three.name +
-                '"class="col-1"><img src="' +
-                three.image +
-                '"></li>';
-              sectionThree.innerHTML = outputThree;
+              outputThreeSection(three);
             });
           }
         }
@@ -184,11 +184,7 @@ function qaida() {
       let playIndex = 0;
       let playPaused = document.getElementById("playBtn");
 
-      playPaused.addEventListener("mousedown", playPause);
-
-      // console.log(obj[current]);
-
-      function playPause() {
+      playPaused.addEventListener("mousedown", () => {
         if (sound.paused) {
           playPaused.classList.remove("fa-play");
           playPaused.classList.add("fa-pause");
@@ -210,11 +206,13 @@ function qaida() {
             });
           }
         }
-      }
+      });
+
+      // console.log(obj[current]);
 
       // Play clicking individual sounds
-      currentPage.parentElement.addEventListener("mousedown", playSound);
-      function playSound(e) {
+      currentPage.parentElement.addEventListener("mousedown", selectSound);
+      function selectSound(e) {
         // Get id name of each sound image thats outputed
         const pathId = e.path[1].id;
         sound.src = folder + pathId + extension;
@@ -238,7 +236,7 @@ function qaida() {
       let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
       //Local storage set bookmark
       let bookMarkIcon = document.getElementById("bookmark");
-      bookMarkIcon.addEventListener("click", bookMark);
+      bookMarkIcon.addEventListener("mousedown", bookMark);
 
       //Check Bookmark and fill if current bookMark
 
@@ -252,95 +250,65 @@ function qaida() {
         }
       }
 
-      function bookMark(e) {
-        checkBookMark(current);
-        let arabicletters = obj[current];
-        localStorage.setItem("letters", JSON.stringify(arabicletters));
+      function bookMark() {
+        localStorage.setItem("letters", JSON.stringify(obj[current]));
         localStorage.setItem("pageNumber", JSON.stringify(current));
-        e.preventDefault();
+        checkBookMark(pageNumber);
+
+        window.location.reload();
       }
 
-      // Local storage get bookmark
-      let bookMarkRef = document.getElementById("bookMarkRef");
-      bookMarkRef.addEventListener("click", getBookMark);
+      if (performance.navigation.type == 1) {
+        getBookMark();
+        console.log("World");
+      }
 
-      function getBookMark(e) {
+      let bookMarkRef = document.getElementById("bookMarkRef");
+      bookMarkRef.addEventListener("mousedown", getBookMark);
+
+      // Local storage get bookmark
+
+      function getBookMark() {
         currentPageNumber.selectedIndex = JSON.parse(
           localStorage.getItem("pageNumber")
         );
         current = pageNumber;
 
         reset();
-        e.preventDefault();
+
         checkBookMark(current);
 
         let arabicletters = JSON.parse(localStorage.getItem("letters"));
-        if (arabicletters == null) {
-          currentPage.innerHTML = "Please place a bookmark";
+
+        if (arabicletters.length == 2) {
+          output = "";
+          arabicletters[0].sectOne.forEach(one => {
+            outputOneSection(one);
+          });
+          arabicletters[1].sectTwo.forEach(two => {
+            outputTwoSection(two);
+          });
+        } else if (arabicletters.length == 3) {
+          output = "";
+          // If page has three sections
+          arabicletters[0].sectOne.forEach(one => {
+            outputOneSection(one);
+          });
+          arabicletters[1].sectTwo.forEach(two => {
+            outputTwoSection(two);
+          });
+          arabicletters[2].sectThree.forEach(three => {
+            outputThreeSection(three);
+          });
         } else {
-          if (arabicletters.length == 2) {
-            output = "";
-            arabicletters[0].sectOne.forEach(one => {
-              output +=
-                '<li id="' +
-                one.name +
-                '"class="col-1"><img src="' +
-                one.image +
-                '"></li>';
-              currentPage.innerHTML = output;
-            });
-
-            arabicletters[1].sectTwo.forEach(two => {
-              outputTwo +=
-                '<li id="' +
-                two.name +
-                '"class="col-1"><img src="' +
-                two.image +
-                '"></li>';
-              sectionTwo.innerHTML = outputTwo;
-            });
-          } else if (arabicletters.length == 3) {
-            output = "";
-            // If page has three sections
-            arabicletters[0].sectOne.forEach(one => {
-              output +=
-                '<li id="' +
-                one.name +
-                '"class="col-1"><img src="' +
-                one.image +
-                '"></li>';
-              currentPage.innerHTML = output;
-            });
-
-            arabicletters[1].sectTwo.forEach(two => {
-              outputTwo +=
-                '<li id="' +
-                two.name +
-                '"class="col-1"><img src="' +
-                two.image +
-                '"></li>';
-              sectionTwo.innerHTML = outputTwo;
-            });
-
-            arabicletters[2].sectThree.forEach(three => {
-              outputThree +=
-                '<li id="' +
-                three.name +
-                '"class="col-1"><img src="' +
-                three.image +
-                '"></li>';
-              sectionThree.innerHTML = outputThree;
-            });
-          } else {
-            for (let i = 0; i < arabicletters.length; i++) {
-              output +=
-                '<li id="' +
-                arabicletters[i].name +
-                '"class="col-2"><img src="' +
-                arabicletters[i].image +
-                '"></li>';
-              currentPage.innerHTML = output;
-            }
+          for (let i = 0; i < arabicletters.length; i++) {
+            output +=
+              '<li id="' +
+              arabicletters[i].name +
+              '"class="col-2"><img src="' +
+              arabicletters[i].image +
+              '"></li>';
+            currentPage.innerHTML = output;
           }
         }
       }
