@@ -188,6 +188,7 @@ function qaida() {
         if (sound.paused) {
           playPaused.classList.remove("fa-play");
           playPaused.classList.add("fa-pause");
+
           switchSound();
         } else {
           sound.pause();
@@ -196,6 +197,8 @@ function qaida() {
         }
         sound.addEventListener("ended", switchSound);
         function switchSound() {
+          currentPage.children[playIndex].classList.add("bgBlue");
+
           sound.src = folder + obj[current][playIndex].name + extension;
           playIndex++;
           sound.play();
