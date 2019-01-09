@@ -188,37 +188,57 @@ function qaida() {
         if (sound.paused) {
           playPaused.classList.remove("fa-play");
           playPaused.classList.add("fa-pause");
-
           switchSound();
         } else {
           sound.pause();
           playPaused.classList.remove("fa-pause");
           playPaused.classList.add("fa-play");
         }
-        sound.addEventListener("ended", switchSound);
-        function switchSound() {
-          currentPage.children[playIndex].classList.add("bgBlue");
-
-          sound.src = folder + obj[current][playIndex].name + extension;
-          playIndex++;
-          sound.play();
-          if (playIndex == obj[current].length) {
-            sound.addEventListener("ended", () => {
-              playPaused.classList.remove("fa-pause");
-              playPaused.classList.add("fa-play");
-            });
-          }
-        }
       });
+
+      function sectionLoop() {
+        if (obj[current].length == 2) {
+          if (playIndex == obj[current][0].sectOne.length) {
+            // sound.src =
+            //   folder + obj[current][1].sectTwo[playIndex].name + extension;
+            // console.log(obj[current][1].sectTwo[playIndex].name);
+            console.log(playIndex);
+          } else {
+            sound.src =
+              folder + obj[current][0].sectOne[playIndex].name + extension;
+          }
+        } else if (obj[current].length == 3) {
+          console.log("3 sections");
+        } else {
+          sound.src = folder + obj[current][playIndex].name + extension;
+        }
+      }
+
+      sound.addEventListener("ended", switchSound);
+      function switchSound() {
+        // currentPage.children[playIndex].classList.add("bgBlue");
+
+        sectionLoop();
+
+        sound.play();
+        playIndex++;
+
+        if (playIndex == obj[current].length) {
+          sound.addEventListener("ended", () => {
+            playPaused.classList.remove("fa-pause");
+            playPaused.classList.add("fa-play");
+          });
+        }
+      }
 
       // console.log(obj[current]);
 
       // Play clicking individual sounds
       currentPage.parentElement.addEventListener("mousedown", selectSound);
-      function selectSound(e) {
+      function selectSound(e, name) {
+        name = e.path[1].id;
         // Get id name of each sound image thats outputed
-        const pathId = e.path[1].id;
-        sound.src = folder + pathId + extension;
+        sound.src = folder + name + extension;
         if (sound.paused) {
           sound.play();
         }
@@ -263,7 +283,6 @@ function qaida() {
 
       if (performance.navigation.type == 1) {
         getBookMark();
-        console.log("World");
       }
 
       let bookMarkRef = document.getElementById("bookMarkRef");
