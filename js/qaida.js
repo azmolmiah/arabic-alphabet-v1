@@ -4,6 +4,9 @@ let extension = ".mp3";
 let sound;
 sound = new Audio();
 
+function sndSrc(source) {
+  sound.src = folder + source + extension;
+}
 // Get all the pages to be displayed
 let currentPage = document.querySelector(".letters");
 
@@ -180,7 +183,6 @@ function qaida() {
       });
 
       // ========================================= Sound Function ======================================= //
-      sound.loop = false;
       let playIndex = 0;
       let playPaused = document.getElementById("playBtn");
 
@@ -191,56 +193,53 @@ function qaida() {
           switchSound();
         } else {
           sound.pause();
-          playPaused.classList.remove("fa-pause");
-          playPaused.classList.add("fa-play");
+          // playPaused.classList.remove("fa-pause");
+          // playPaused.classList.add("fa-play");
         }
       });
 
+      let twoSectionConcat;
+
       function sectionLoop() {
+        // If more than one section
         if (obj[current].length == 2) {
-          if (playIndex == obj[current][0].sectOne.length) {
-            // sound.src =
-            //   folder + obj[current][1].sectTwo[playIndex].name + extension;
-            // console.log(obj[current][1].sectTwo[playIndex].name);
-            console.log(playIndex);
-          } else {
-            sound.src =
-              folder + obj[current][0].sectOne[playIndex].name + extension;
-          }
+          twoSectionConcat = obj[current][0].sectOne.concat(
+            obj[current][1].sectTwo
+          );
+          sndSrc(twoSectionConcat[playIndex].name);
         } else if (obj[current].length == 3) {
-          console.log("3 sections");
+          let threeSectionConcat = twoSectionConcat.concat(
+            obj[current][2].sectThree
+          );
+          sndSrc(threeSectionConcat[playIndex].name);
         } else {
-          sound.src = folder + obj[current][playIndex].name + extension;
+          sndSrc(obj[current][playIndex].name);
         }
       }
 
       sound.addEventListener("ended", switchSound);
       function switchSound() {
         // currentPage.children[playIndex].classList.add("bgBlue");
-
+        setTimeout(function() {
+          // console.log(currentPage.children[playIndex].classList);
+        }, 1000);
         sectionLoop();
-
         sound.play();
         playIndex++;
-
         if (playIndex == obj[current].length) {
-          sound.addEventListener("ended", () => {
-            playPaused.classList.remove("fa-pause");
-            playPaused.classList.add("fa-play");
-          });
+          playPaused.classList.remove("fa-pause");
+          playPaused.classList.add("fa-play");
         }
       }
 
-      // console.log(obj[current]);
-
       // Play clicking individual sounds
-      currentPage.parentElement.addEventListener("mousedown", selectSound);
-      function selectSound(e, name) {
-        name = e.path[1].id;
+      currentPage.parentElement.addEventListener("click", selectSound);
+      function selectSound(e) {
+        let soundTwo = new Audio();
         // Get id name of each sound image thats outputed
-        sound.src = folder + name + extension;
-        if (sound.paused) {
-          sound.play();
+        soundTwo.src = folder + e.path[1].id + extension;
+        if (soundTwo.paused) {
+          soundTwo.play();
         }
       }
 

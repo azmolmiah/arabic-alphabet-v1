@@ -74,6 +74,7 @@ body {
 #alphabet img:hover,
 .bgBlue {
   background: #10a2c7;
+  transition: ease-out 750ms all;
 }
 
 .letters {
