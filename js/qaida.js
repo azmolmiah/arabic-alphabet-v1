@@ -1,12 +1,3 @@
-// Set empty sound variable, Setting the Audio Object, concatenate file extensions
-let folder = "audio/";
-let extension = ".mp3";
-let sound;
-sound = new Audio();
-
-function sndSrc(source) {
-  sound.src = folder + source + extension;
-}
 // Get all the pages to be displayed
 let currentPage = document.querySelector(".letters");
 
@@ -26,9 +17,9 @@ let prev = document.querySelector("#prev");
 function qaida() {
   // Create new XMLHttpRequest request
   let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onload = function() {
     // If server status was ok
-    if (this.readyState == 4 && this.status == 200) {
+    if (this.status === 200) {
       // parsing the json data from the json file as an object// Get property values of the keys in an array
       let response = JSON.parse(xhttp.responseText);
       let obj = Object.values(response);
@@ -183,6 +174,16 @@ function qaida() {
       });
 
       // ========================================= Sound Function ======================================= //
+      // Set empty sound variable, Setting the Audio Object, concatenate file extensions
+      const folder = "audio/";
+      const extension = ".mp3";
+      let sound;
+      sound = new Audio();
+
+      function sndSrc(source) {
+        sound.src = folder + source + extension;
+      }
+
       let playIndex = 0;
       let playPaused = document.getElementById("playBtn");
 
@@ -193,8 +194,8 @@ function qaida() {
           switchSound();
         } else {
           sound.pause();
-          // playPaused.classList.remove("fa-pause");
-          // playPaused.classList.add("fa-play");
+          playPaused.classList.remove("fa-pause");
+          playPaused.classList.add("fa-play");
         }
       });
 
@@ -207,6 +208,8 @@ function qaida() {
             obj[current][1].sectTwo
           );
           sndSrc(twoSectionConcat[playIndex].name);
+
+          // console.log(currentPage.nextSibling.children);
         } else if (obj[current].length == 3) {
           let threeSectionConcat = twoSectionConcat.concat(
             obj[current][2].sectThree
@@ -214,15 +217,12 @@ function qaida() {
           sndSrc(threeSectionConcat[playIndex].name);
         } else {
           sndSrc(obj[current][playIndex].name);
+          currentPage.children[playIndex].classList.add("bgBlue");
         }
       }
 
       sound.addEventListener("ended", switchSound);
       function switchSound() {
-        // currentPage.children[playIndex].classList.add("bgBlue");
-        setTimeout(function() {
-          // console.log(currentPage.children[playIndex].classList);
-        }, 1000);
         sectionLoop();
         sound.play();
         playIndex++;
@@ -248,9 +248,9 @@ function qaida() {
 
       function options(e) {
         reset();
-        checkBookMark(pageNumber);
-        // Set current to option target value
         current = Number(e.target.value);
+        checkBookMark(current); //Needs fixing
+        // Set current to option target value
         getAllLetters(current);
       }
 
