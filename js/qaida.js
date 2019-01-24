@@ -182,6 +182,13 @@ xhttp.onload = function() {
       sound.src = folder + source + extension;
     }
 
+    function playPauseBtn(objLength) {
+      if (playIndex == objLength) {
+        playPaused.classList.remove("fa-pause");
+        playPaused.classList.add("fa-play");
+      }
+    }
+
     let playIndex = 0;
     let playPaused = document.getElementById("playBtn");
 
@@ -205,6 +212,7 @@ xhttp.onload = function() {
         twoSectionConcat = obj[current][0].sectOne.concat(
           obj[current][1].sectTwo
         );
+        playPauseBtn(twoSectionConcat.length);
         sndSrc(twoSectionConcat[playIndex].name);
 
         // console.log(currentPage.nextSibling.children);
@@ -212,10 +220,12 @@ xhttp.onload = function() {
         let threeSectionConcat = twoSectionConcat.concat(
           obj[current][2].sectThree
         );
+        playPauseBtn(threeSectionConcat.length);
         sndSrc(threeSectionConcat[playIndex].name);
       } else {
+        playPauseBtn(obj[current].length);
         sndSrc(obj[current][playIndex].name);
-        currentPage.children[playIndex].classList.add("bgBlue");
+        // currentPage.children[playIndex].classList.add("bgBlue");
       }
     }
 
@@ -224,10 +234,6 @@ xhttp.onload = function() {
       sectionLoop();
       sound.play();
       playIndex++;
-      if (playIndex == obj[current].length) {
-        playPaused.classList.remove("fa-pause");
-        playPaused.classList.add("fa-play");
-      }
     }
 
     // Play clicking individual sounds
