@@ -95,8 +95,6 @@ xhttp.onload = function() {
             '"></li>';
           // Output above in the first page div
           currentPage.innerHTML = output;
-          // sectionTwo.innerHTML = "";
-          // sectionThree.innerHTML = "";
         }
       } else {
         // If page has two sections
@@ -136,7 +134,6 @@ xhttp.onload = function() {
     //display content each time going to previous page
     function previousPage() {
       reset();
-
       // Drop down option
       currentPageNumber.selectedIndex = current - 1;
       getAllLetters(current - 1);
@@ -147,7 +144,6 @@ xhttp.onload = function() {
     // display content each time going to next page*
     function nextPage() {
       reset();
-
       // Drop down option
       currentPageNumber.selectedIndex = current + 1;
       getAllLetters(current + 1);
@@ -182,10 +178,15 @@ xhttp.onload = function() {
       sound.src = folder + source + extension;
     }
 
+    // If play loop has reached end of last letter
     function playPauseBtn(objLength) {
       if (playIndex == objLength) {
         playPaused.classList.remove("fa-pause");
         playPaused.classList.add("fa-play");
+        currentPage.children.classList.remove("bgBlue");
+      } else {
+        playPaused.classList.remove("fa-play");
+        playPaused.classList.add("fa-pause");
       }
     }
 
@@ -205,6 +206,7 @@ xhttp.onload = function() {
     });
 
     let twoSectionConcat;
+    let sectTwoArr;
 
     function sectionLoop() {
       // If more than one section
@@ -214,18 +216,28 @@ xhttp.onload = function() {
         );
         playPauseBtn(twoSectionConcat.length);
         sndSrc(twoSectionConcat[playIndex].name);
-
-        // console.log(currentPage.nextSibling.children);
+        let sectOneArr = Array.from(
+          currentPage.parentElement.firstChild.children
+        );
+        sectTwoArr = sectOneArr.concat(
+          Array.from(currentPage.parentElement.children[1].children)
+        );
+        sectTwoArr[playIndex].classList.add("bgBlue");
+        // selectedLetterColour(obj[current][playIndex].name, sectTwoArr);
       } else if (obj[current].length == 3) {
         let threeSectionConcat = twoSectionConcat.concat(
           obj[current][2].sectThree
         );
         playPauseBtn(threeSectionConcat.length);
         sndSrc(threeSectionConcat[playIndex].name);
+        let sectThreeArr = sectTwoArr.concat(
+          Array.from(currentPage.parentElement.children[2].children)
+        );
+        sectThreeArr[playIndex].classList.add("bgBlue");
       } else {
         playPauseBtn(obj[current].length);
         sndSrc(obj[current][playIndex].name);
-        // currentPage.children[playIndex].classList.add("bgBlue");
+        currentPage.children[playIndex].classList.add("bgBlue");
       }
     }
 
@@ -255,7 +267,6 @@ xhttp.onload = function() {
       // Set current to option target value
       current = Number(e.target.value);
       checkBookMark(current);
-
       getAllLetters(current);
     }
 
