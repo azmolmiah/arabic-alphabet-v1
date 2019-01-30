@@ -179,11 +179,15 @@ xhttp.onload = function() {
     }
 
     // If play loop has reached end of last letter
-    function playPauseBtn(objLength) {
+    function playPauseBtn(objLength, removeAllBgBlue) {
       if (playIndex == objLength) {
         playPaused.classList.remove("fa-pause");
         playPaused.classList.add("fa-play");
-        currentPage.children.classList.remove("bgBlue");
+        setTimeout(function() {
+          for (let i = 0; i < removeAllBgBlue.length; i++) {
+            removeAllBgBlue[i].classList.remove("bgBlue");
+          }
+        }, 1000);
       } else {
         playPaused.classList.remove("fa-play");
         playPaused.classList.add("fa-pause");
@@ -211,10 +215,10 @@ xhttp.onload = function() {
     function sectionLoop() {
       // If more than one section
       if (obj[current].length == 2) {
+        playPauseBtn(twoSectionConcat.length);
         twoSectionConcat = obj[current][0].sectOne.concat(
           obj[current][1].sectTwo
         );
-        playPauseBtn(twoSectionConcat.length);
         sndSrc(twoSectionConcat[playIndex].name);
         let sectOneArr = Array.from(
           currentPage.parentElement.firstChild.children
@@ -223,7 +227,6 @@ xhttp.onload = function() {
           Array.from(currentPage.parentElement.children[1].children)
         );
         sectTwoArr[playIndex].classList.add("bgBlue");
-        // selectedLetterColour(obj[current][playIndex].name, sectTwoArr);
       } else if (obj[current].length == 3) {
         let threeSectionConcat = twoSectionConcat.concat(
           obj[current][2].sectThree
@@ -235,7 +238,7 @@ xhttp.onload = function() {
         );
         sectThreeArr[playIndex].classList.add("bgBlue");
       } else {
-        playPauseBtn(obj[current].length);
+        playPauseBtn(obj[current].length, currentPage.children);
         sndSrc(obj[current][playIndex].name);
         currentPage.children[playIndex].classList.add("bgBlue");
       }
