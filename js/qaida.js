@@ -213,12 +213,12 @@ xhttp.onload = function() {
     let sectTwoArr;
 
     function sectionLoop() {
-      // If more than one section
+      // If two section
       if (obj[current].length == 2) {
-        playPauseBtn(twoSectionConcat.length);
         twoSectionConcat = obj[current][0].sectOne.concat(
           obj[current][1].sectTwo
         );
+        playPauseBtn(twoSectionConcat.length, sectTwoArr);
         sndSrc(twoSectionConcat[playIndex].name);
         let sectOneArr = Array.from(
           currentPage.parentElement.firstChild.children
@@ -227,11 +227,12 @@ xhttp.onload = function() {
           Array.from(currentPage.parentElement.children[1].children)
         );
         sectTwoArr[playIndex].classList.add("bgBlue");
+        // If Three section
       } else if (obj[current].length == 3) {
         let threeSectionConcat = twoSectionConcat.concat(
           obj[current][2].sectThree
         );
-        playPauseBtn(threeSectionConcat.length);
+        playPauseBtn(threeSectionConcat.length, sectThreeArr);
         sndSrc(threeSectionConcat[playIndex].name);
         let sectThreeArr = sectTwoArr.concat(
           Array.from(currentPage.parentElement.children[2].children)
