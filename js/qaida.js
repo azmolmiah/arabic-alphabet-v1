@@ -52,35 +52,59 @@ xhttp.onload = function() {
       sectionThree.innerHTML = "";
     }
 
-    function outputOneSection(one) {
-      output +=
-        '<li id="' +
-        one.name +
-        '"class="col-1"><img src="' +
-        one.image +
-        '"></li>';
-      currentPage.innerHTML = output;
+    // function outputOneSection(one) {
+    //   output +=
+    //     '<li id="' +
+    //     one.name +
+    //     '"class="col-1"><img src="' +
+    //     one.image +
+    //     '"></li>';
+    //   currentPage.innerHTML = output;
+    // }
+
+    // function outputTwoSection(two) {
+    //   outputTwo +=
+    //     '<li id="' +
+    //     two.name +
+    //     '"class="col-1"><img src="' +
+    //     two.image +
+    //     '"></li>';
+    //   sectionTwo.innerHTML = outputTwo;
+    // }
+
+    // function outputThreeSection(three) {
+    //   outputThree +=
+    //     '<li id="' +
+    //     three.name +
+    //     '"class="col-1"><img src="' +
+    //     three.image +
+    //     '"></li>';
+    //   sectionThree.innerHTML = outputThree;
+    // }
+
+    class Section {
+      constructor(outputNum, sectionNum) {
+        this.outputNum = outputNum;
+        this.sectionNum = sectionNum;
+      }
+
+      sections(letterNum) {
+        this.outputNum +=
+          '<li id="' +
+          letterNum.name +
+          '"class="col-1"><img src="' +
+          letterNum.image +
+          '"></li>';
+        this.sectionNum.innerHTML = this.outputNum;
+      }
+
+      reset() {
+        this.outputNum = "";
+      }
     }
 
-    function outputTwoSection(two) {
-      outputTwo +=
-        '<li id="' +
-        two.name +
-        '"class="col-1"><img src="' +
-        two.image +
-        '"></li>';
-      sectionTwo.innerHTML = outputTwo;
-    }
-
-    function outputThreeSection(three) {
-      outputThree +=
-        '<li id="' +
-        three.name +
-        '"class="col-1"><img src="' +
-        three.image +
-        '"></li>';
-      sectionThree.innerHTML = outputThree;
-    }
+    const sectionone = new Section(output, currentPage);
+    const sectiontwo = new Section(outputTwo, sectionTwo);
 
     function getAllLetters(indexNum) {
       if (indexNum === 0 || indexNum === 1) {
@@ -100,13 +124,12 @@ xhttp.onload = function() {
         // If page has two sections
         if (obj[indexNum].length == 2) {
           obj[indexNum][0].sectOne.forEach(one => {
-            outputOneSection(one);
+            sectionone.sections(one);
           });
 
           obj[indexNum][1].sectTwo.forEach(two => {
-            outputTwoSection(two);
+            sectiontwo.sections(two);
           });
-          // sectionThree.innerHTML = "";
         } else if (obj[indexNum].length == 3) {
           // If page has three sections
           obj[indexNum][0].sectOne.forEach(one => {
@@ -134,6 +157,8 @@ xhttp.onload = function() {
     //display content each time going to previous page
     function previousPage() {
       reset();
+      sectionone.reset();
+      sectiontwo.reset();
       // Drop down option
       currentPageNumber.selectedIndex = current - 1;
       getAllLetters(current - 1);
@@ -144,6 +169,8 @@ xhttp.onload = function() {
     // display content each time going to next page*
     function nextPage() {
       reset();
+      sectionone.reset();
+      sectiontwo.reset();
       // Drop down option
       currentPageNumber.selectedIndex = current + 1;
       getAllLetters(current + 1);
