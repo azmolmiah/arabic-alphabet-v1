@@ -27,6 +27,7 @@ xhttp.onload = function() {
     let current = 0;
     let output;
     let outputTwo;
+    let outputThree;
 
     // Add second row
     const sectionElement = document.createElement("ul");
@@ -41,16 +42,15 @@ xhttp.onload = function() {
 
     /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
-    function reset() {
-      while (currentPage.firstChild) {
-        currentPage.removeChild(currentPage.firstChild);
-      }
-      output = "";
-      outputTwo = "";
-      outputThree = "";
-      sectionTwo.innerHTML = "";
-      sectionThree.innerHTML = "";
-    }
+    // function reset() {
+    //   while (currentPage.firstChild) {
+    //     currentPage.removeChild(currentPage.firstChild);
+    //   }
+    //   output = "";
+    //   sectionone.reset();
+    //   sectiontwo.reset();
+    //   sectionthree.reset();
+    // }
 
     // function outputOneSection(one) {
     //   output +=
@@ -98,13 +98,28 @@ xhttp.onload = function() {
         this.sectionNum.innerHTML = this.outputNum;
       }
 
-      reset() {
+      static reset() {
+        while (currentPage.firstChild) {
+          currentPage.removeChild(currentPage.firstChild);
+        }
+        output = "";
+      }
+
+      resets() {
         this.outputNum = "";
+        this.sectionNum.innerHTML = "";
       }
     }
 
     const sectionone = new Section(output, currentPage);
     const sectiontwo = new Section(outputTwo, sectionTwo);
+    const sectionthree = new Section(outputThree, sectionThree);
+
+    function reset() {
+      sectionone.resets();
+      sectiontwo.resets();
+      sectionthree.resets();
+    }
 
     function getAllLetters(indexNum) {
       if (indexNum === 0 || indexNum === 1) {
@@ -133,15 +148,15 @@ xhttp.onload = function() {
         } else if (obj[indexNum].length == 3) {
           // If page has three sections
           obj[indexNum][0].sectOne.forEach(one => {
-            outputOneSection(one);
+            sectionone.sections(one);
           });
 
           obj[indexNum][1].sectTwo.forEach(two => {
-            outputTwoSection(two);
+            sectiontwo.sections(two);
           });
 
           obj[indexNum][2].sectThree.forEach(three => {
-            outputThreeSection(three);
+            sectionthree.sections(three);
           });
         }
       }
@@ -150,15 +165,15 @@ xhttp.onload = function() {
     // Set the first page to be displayed when windows loaded
     function startQaida() {
       // reset the page to clear first
+      Section.reset();
       reset();
       getAllLetters(current);
     } //--closing brace startQaida()
 
     //display content each time going to previous page
     function previousPage() {
+      Section.reset();
       reset();
-      sectionone.reset();
-      sectiontwo.reset();
       // Drop down option
       currentPageNumber.selectedIndex = current - 1;
       getAllLetters(current - 1);
@@ -168,9 +183,8 @@ xhttp.onload = function() {
 
     // display content each time going to next page*
     function nextPage() {
+      Section.reset();
       reset();
-      sectionone.reset();
-      sectiontwo.reset();
       // Drop down option
       currentPageNumber.selectedIndex = current + 1;
       getAllLetters(current + 1);
@@ -351,22 +365,22 @@ xhttp.onload = function() {
       if (arabicletters.length == 2) {
         output = "";
         arabicletters[0].sectOne.forEach(one => {
-          outputOneSection(one);
+          sectionone.sections(one);
         });
         arabicletters[1].sectTwo.forEach(two => {
-          outputTwoSection(two);
+          sectiontwo.sections(two);
         });
       } else if (arabicletters.length == 3) {
         output = "";
         // If page has three sections
         arabicletters[0].sectOne.forEach(one => {
-          outputOneSection(one);
+          sectionone.sections(one);
         });
         arabicletters[1].sectTwo.forEach(two => {
-          outputTwoSection(two);
+          sectiontwo.sections(two);
         });
         arabicletters[2].sectThree.forEach(three => {
-          outputThreeSection(three);
+          sectionthree.sections(three);
         });
       } else {
         for (let i = 0; i < arabicletters.length; i++) {
