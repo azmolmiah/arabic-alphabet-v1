@@ -121,45 +121,47 @@ xhttp.onload = function() {
       sectionthree.resets();
     }
 
-    function getAllLetters(indexNum) {
-      if (indexNum === 0 || indexNum === 1) {
-        for (let i = 0; i < obj[indexNum].length; i++) {
-          /* append current content of the letterspage1 first values first name of the Arabic
-                      letter as an id and the first image or image path to be displayed*/
-          output +=
-            '<li id="' +
-            obj[indexNum][i].name +
-            '"class="col-2"><img src="' +
-            obj[indexNum][i].image +
-            '"></li>';
-          // Output above in the first page div
-          currentPage.innerHTML = output;
-        }
-      } else {
-        // If page has two sections
-        if (obj[indexNum].length == 2) {
-          obj[indexNum][0].sectOne.forEach(one => {
+    class Letters {
+      constructor(objects) {
+        this.object = objects;
+      }
+
+      sectionLetters() {
+        if (this.object.length == 2) {
+          this.object[0].sectOne.forEach(one => {
             sectionone.sections(one);
           });
-
-          obj[indexNum][1].sectTwo.forEach(two => {
+          this.object[1].sectTwo.forEach(two => {
             sectiontwo.sections(two);
           });
-        } else if (obj[indexNum].length == 3) {
+        } else if (this.object.length == 3) {
           // If page has three sections
-          obj[indexNum][0].sectOne.forEach(one => {
+          this.object[0].sectOne.forEach(one => {
             sectionone.sections(one);
           });
-
-          obj[indexNum][1].sectTwo.forEach(two => {
+          this.object[1].sectTwo.forEach(two => {
             sectiontwo.sections(two);
           });
-
-          obj[indexNum][2].sectThree.forEach(three => {
+          this.object[2].sectThree.forEach(three => {
             sectionthree.sections(three);
           });
+        } else {
+          for (let i = 0; i < this.object.length; i++) {
+            output +=
+              '<li id="' +
+              this.object[i].name +
+              '"class="col-2"><img src="' +
+              this.object[i].image +
+              '"></li>';
+            currentPage.innerHTML = output;
+          }
         }
       }
+    }
+
+    function getAllLetters(indexNum) {
+      const getallletters = new Letters(obj[indexNum]);
+      getallletters.sectionLetters();
     }
 
     // Set the first page to be displayed when windows loaded
@@ -208,7 +210,7 @@ xhttp.onload = function() {
       nextPage();
     });
 
-    // ========================================= Sound Function ======================================= //
+    // ========================================= Sound Funcion ================================== //
     // Set empty sound variable, Setting the Audio Object, concatenate file extensions
     const folder = "audio/";
     const extension = ".mp3";
@@ -309,6 +311,7 @@ xhttp.onload = function() {
 
     function options(e) {
       reset();
+      Section.reset();
       // Set current to option target value
       current = Number(e.target.value);
       checkBookMark(current);
@@ -339,6 +342,7 @@ xhttp.onload = function() {
       checkBookMark(pageNumber);
 
       window.location.reload();
+      getBookMark();
     }
 
     if (performance.navigation.type == 1) {
@@ -357,42 +361,12 @@ xhttp.onload = function() {
       current = pageNumber;
 
       reset();
-
+      Section.reset();
       checkBookMark(current);
 
       let arabicletters = JSON.parse(localStorage.getItem("letters"));
-
-      if (arabicletters.length == 2) {
-        output = "";
-        arabicletters[0].sectOne.forEach(one => {
-          sectionone.sections(one);
-        });
-        arabicletters[1].sectTwo.forEach(two => {
-          sectiontwo.sections(two);
-        });
-      } else if (arabicletters.length == 3) {
-        output = "";
-        // If page has three sections
-        arabicletters[0].sectOne.forEach(one => {
-          sectionone.sections(one);
-        });
-        arabicletters[1].sectTwo.forEach(two => {
-          sectiontwo.sections(two);
-        });
-        arabicletters[2].sectThree.forEach(three => {
-          sectionthree.sections(three);
-        });
-      } else {
-        for (let i = 0; i < arabicletters.length; i++) {
-          output +=
-            '<li id="' +
-            arabicletters[i].name +
-            '"class="col-2"><img src="' +
-            arabicletters[i].image +
-            '"></li>';
-          currentPage.innerHTML = output;
-        }
-      }
+      const bookMarkLetter = new Letters(arabicletters);
+      bookMarkLetter.sectionLetters();
     }
 
     // Call the function to display the first page content
