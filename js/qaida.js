@@ -42,45 +42,6 @@ xhttp.onload = function() {
 
     /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
-    // function reset() {
-    //   while (currentPage.firstChild) {
-    //     currentPage.removeChild(currentPage.firstChild);
-    //   }
-    //   output = "";
-    //   sectionone.reset();
-    //   sectiontwo.reset();
-    //   sectionthree.reset();
-    // }
-
-    // function outputOneSection(one) {
-    //   output +=
-    //     '<li id="' +
-    //     one.name +
-    //     '"class="col-1"><img src="' +
-    //     one.image +
-    //     '"></li>';
-    //   currentPage.innerHTML = output;
-    // }
-
-    // function outputTwoSection(two) {
-    //   outputTwo +=
-    //     '<li id="' +
-    //     two.name +
-    //     '"class="col-1"><img src="' +
-    //     two.image +
-    //     '"></li>';
-    //   sectionTwo.innerHTML = outputTwo;
-    // }
-
-    // function outputThreeSection(three) {
-    //   outputThree +=
-    //     '<li id="' +
-    //     three.name +
-    //     '"class="col-1"><img src="' +
-    //     three.image +
-    //     '"></li>';
-    //   sectionThree.innerHTML = outputThree;
-    // }
 
     class Section {
       constructor(outputNum, sectionNum) {
@@ -89,12 +50,8 @@ xhttp.onload = function() {
       }
 
       sections(letterNum) {
-        this.outputNum +=
-          '<li id="' +
-          letterNum.name +
-          '"class="col-1"><img src="' +
-          letterNum.image +
-          '"></li>';
+        this.outputNum += `<li id="${letterNum.name}"class="col-1"><img src="
+          ${letterNum.image}"></li>`;
         this.sectionNum.innerHTML = this.outputNum;
       }
 
@@ -147,12 +104,9 @@ xhttp.onload = function() {
           });
         } else {
           for (let i = 0; i < this.object.length; i++) {
-            output +=
-              '<li id="' +
-              this.object[i].name +
-              '"class="col-2"><img src="' +
-              this.object[i].image +
-              '"></li>';
+            output += `<li id="${this.object[i].name}"class="col-2"><img src="${
+              this.object[i].image
+            }"></li>`;
             currentPage.innerHTML = output;
           }
         }
@@ -210,7 +164,7 @@ xhttp.onload = function() {
       nextPage();
     });
 
-    // ========================================= Sound Funcion ================================== //
+    // ========================================= SOUND FUNCTION ================================== //
     // Set empty sound variable, Setting the Audio Object, concatenate file extensions
     const folder = "audio/";
     const extension = ".mp3";
@@ -340,12 +294,7 @@ xhttp.onload = function() {
       localStorage.setItem("letters", JSON.stringify(obj[current]));
       localStorage.setItem("pageNumber", JSON.stringify(current));
       checkBookMark(pageNumber);
-
       window.location.reload();
-      getBookMark();
-    }
-
-    if (performance.navigation.type == 1) {
       getBookMark();
     }
 
@@ -353,18 +302,15 @@ xhttp.onload = function() {
     bookMarkRef.addEventListener("mousedown", getBookMark);
 
     // Local storage get bookmark
-
     function getBookMark() {
       currentPageNumber.selectedIndex = JSON.parse(
         localStorage.getItem("pageNumber")
       );
       current = pageNumber;
-
       reset();
       Section.reset();
       checkBookMark(current);
-
-      let arabicletters = JSON.parse(localStorage.getItem("letters"));
+      const arabicletters = JSON.parse(localStorage.getItem("letters"));
       const bookMarkLetter = new Letters(arabicletters);
       bookMarkLetter.sectionLetters();
     }
