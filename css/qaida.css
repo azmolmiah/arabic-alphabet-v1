@@ -1,21 +1,21 @@
 /*Global*/
 body {
   color: #fff;
-  overflow-y: hidden !important;
+  margin: 0;
 }
 .fa {
   font-size: 24px;
   color: #fff;
 }
-ul {
-  -webkit-margin-before: 0 !important;
-  -webkit-margin-after: 0 !important;
-  -webkit-padding-start: 0 !important;
+.container {
+  width: 600px;
+  margin: 0 auto;
 }
 
 .navbar {
   background-color: #10a2c7;
-  padding: 0;
+  padding: 1rem;
+  display: block;
 }
 
 a {
@@ -24,10 +24,6 @@ a {
 
 body {
   color: #fff !important;
-}
-
-.container {
-  max-width: 675px !important;
 }
 
 .btn-outline-light:hover {
@@ -54,82 +50,75 @@ body {
   border-color: #10a2c7;
 }
 
-/*Online Qaida */
-#alphabet {
-  margin: 10% auto;
-  width: 400px;
-  height: 100%;
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
-/* #alphabet .container {
-  min-height: auto;
-  width: 100%;
-} */
-
-#alphabet img {
-  min-height: auto;
-  width: 100%;
-  cursor: pointer;
-  border: 1px solid #000;
+/* Top Nav */
+.navbar:first-child {
+  height: 30px;
 }
-
-#alphabet img:hover,
-.bgBlue {
-  background: #10a2c7;
-  transition: ease-out 750ms all;
-}
-
-.letters {
-  list-style-type: none;
-}
-
-.letters li {
-  padding: 0 !important;
+.playpause-nav,
+.playpause-nav a {
   float: right;
-}
-
-.bottom-navbar {
-  background-color: #10a2c7;
-}
-
-@media (max-width: 576px) {
-  .navbar-brand,
-  ul.navbar-nav li {
-    padding-left: 1em !important;
-  }
-}
-
-.sect {
-  display: inline-block;
-}
-
-.navbar-toggler {
-  border: none;
-  color: #fff !important;
-  cursor: pointer;
-}
-
-.navbar-toggler:focus {
-  outline: none;
+  list-style: none;
 }
 
 .navbar a li {
   color: #fff;
   margin-left: 1em;
 }
-select::-ms-expand {
-  display: none;
-}
-select {
-  -webkit-appearance: none;
-  appearance: none;
+
+/* Main page Section */
+
+#alphabet img {
+  height: 70px;
+  width: 90px;
 }
 
-.custom-select,
-#bookmark {
-  cursor: pointer !important;
+#alphabet {
+  width: 580px;
+  margin: 0 auto;
 }
 
-#bookMark {
+#alphabet td:hover,
+.bgBlue {
+  background: #10a2c7;
+  transition: ease-out 750ms all;
+  cursor: pointer;
+}
+
+.letters td {
+  padding: 0 !important;
   float: right;
+}
+
+/* Bottom Nav */
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+}
+
+#bottom-nav #next {
+  float: left;
+}
+
+#bottom-nav #pageNumber {
+  margin: 0 29% !important;
+  overflow: auto;
+}
+
+#bottom-nav #prev {
+  float: right;
+}
+
+/* Media Queries */
+
+@media (max-width: 576px) {
+  .navbar-brand,
+  ul.navbar-nav li {
+    padding-left: 1em !important;
+  }
 }

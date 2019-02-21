@@ -10,8 +10,8 @@ for (let i = 0; i <= 40; i++) {
 currentPageNumber.innerHTML += options;
 
 // Get the next or next page element// Get the previous or previous page element
-let next = document.querySelector("#next");
-let prev = document.querySelector("#prev");
+const next = document.querySelector("#next");
+const prev = document.querySelector("#prev");
 
 // Create new XMLHttpRequest request
 let xhttp = new XMLHttpRequest();
@@ -30,11 +30,11 @@ xhttp.onload = function() {
     let outputThree;
 
     // Add second row
-    const sectionElement = document.createElement("ul");
+    const sectionElement = document.createElement("tr");
     sectionElement.className = "letters mt-3";
     const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
 
-    const sectionElementThree = document.createElement("ul");
+    const sectionElementThree = document.createElement("tr");
     sectionElementThree.className = "letters mt-3";
     const sectionThree = currentPage.parentElement.appendChild(
       sectionElementThree
@@ -50,8 +50,8 @@ xhttp.onload = function() {
       }
 
       sections(letterNum) {
-        this.outputNum += `<li id="${letterNum.name}"class="col-1"><img src="
-          ${letterNum.image}"></li>`;
+        this.outputNum += `<td id="${letterNum.name}"><img src="
+          ${letterNum.image}"></td>`;
         this.sectionNum.innerHTML = this.outputNum;
       }
 
@@ -68,9 +68,11 @@ xhttp.onload = function() {
       }
     }
 
-    const sectionone = new Section(output, currentPage);
-    const sectiontwo = new Section(outputTwo, sectionTwo);
-    const sectionthree = new Section(outputThree, sectionThree);
+    // console.log(obj.length - 1);
+
+    const sectionone = new Section(output, currentPage),
+      sectiontwo = new Section(outputTwo, sectionTwo),
+      sectionthree = new Section(outputThree, sectionThree);
 
     function reset() {
       sectionone.resets();
@@ -104,9 +106,9 @@ xhttp.onload = function() {
           });
         } else {
           for (let i = 0; i < this.object.length; i++) {
-            output += `<li id="${this.object[i].name}"class="col-2"><img src="${
+            output += `<td id="${this.object[i].name}" ><img src="${
               this.object[i].image
-            }"></li>`;
+            }"></td>`;
             currentPage.innerHTML = output;
           }
         }
@@ -314,7 +316,6 @@ xhttp.onload = function() {
       const bookMarkLetter = new Letters(arabicletters);
       bookMarkLetter.sectionLetters();
     }
-
     // Call the function to display the first page content
     startQaida();
   } //--closing brace if readystate and status
