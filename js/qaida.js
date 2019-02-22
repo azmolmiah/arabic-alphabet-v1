@@ -106,12 +106,22 @@ xhttp.onload = function() {
           });
         } else {
           for (let i = 0; i < this.object.length; i++) {
-            output += `<td id="${this.object[i].name}" ><img src="${
-              this.object[i].image
-            }"></td>`;
+            output += `<td id="${
+              this.object[i].name
+            }" ><img class="letter-image" src="${this.object[i].image}"></td>`;
             currentPage.innerHTML = output;
           }
         }
+        let letterimg = document.querySelectorAll(".letter-image");
+        letterimg.forEach(img => {
+          if (this.object == obj[0]) {
+            img.style.width = "80px";
+            img.style.height = "80px";
+          } else if (this.object == obj[1]) {
+            img.style.width = "66.2px";
+            img.style.height = "66.2px";
+          }
+        });
       }
     }
 

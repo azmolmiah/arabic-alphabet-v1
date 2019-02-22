@@ -20,6 +20,16 @@ body {
 
 a {
   text-decoration: none !important;
+  color: #fff;
+}
+
+button {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+button:hover {
+  background: #fff;
 }
 
 body {
@@ -50,10 +60,13 @@ body {
   border-color: #10a2c7;
 }
 
+table {
+  margin: 0 !important;
+}
+
 th,
 td {
   border: 1px solid black;
-  border-collapse: collapse;
 }
 
 /* Top Nav */
@@ -71,16 +84,22 @@ td {
   margin-left: 1em;
 }
 
-/* Main page Section */
-
-#alphabet img {
-  height: 70px;
-  width: 90px;
+#bookmark:hover {
+  cursor: pointer;
 }
 
-#alphabet {
-  width: 580px;
-  margin: 0 auto;
+/* Main page Section */
+
+#alphabet .letter-image {
+  /* height: 80px;
+  width: 80px; */
+}
+
+#alphabet .container {
+  position: absolute;
+  top: 8.4%;
+  left: 35%;
+  max-width: 414px !important;
 }
 
 #alphabet td:hover,
