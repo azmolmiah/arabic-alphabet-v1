@@ -124,11 +124,83 @@
 
   "letterspage1": [
     {
-      "name": "haa",
-      "image": "img/haa.png"
+      "name": "alif",
+      "image": "img/pg1b/alif.png"
     },
     {
-      "name": "thaa",
+      "name": "laamalif",
+      "image": "img/pg1b/laamalif.png"
+    },
+    {
+      "name": "laamalif",
+      "image": "img/pg1b/laamalifb.png"
+    },
+    {
+      "name": "baaalif",
+      "image": "img/pg1b/baaalif.png"
+    },
+    {
+      "name": "laamalif",
+      "image": "img/pg1b/laamalifc.png"
+    },
+    {
+      "name": "laam",
+      "image": "img/pg1b/laam.png"
+    },
+    {
+      "name": "laamalif",
+      "image": "img/pg1b/laamalifd.png"
+    },
+    {
+      "name": "haraa",
+      "image": "img/pg1b/haraa.png"
+    },
+    {
+      "name": "laamalif",
+      "image": "img/pg1b/laamalifc.png"
+    },
+    {
+      "name": "baaalifbaa",
+      "image": "img/pg1b/baaalifbaa.png"
+    },
+    {
+      "name": "kaaf",
+      "image": "img/pg1b/kaf.png"
+    },
+    {
+      "name": "kaaf",
+      "image": "img/pg1b/kafb.png"
+    },
+    {
+      "name": "kaafbaa",
+      "image": "img/pg1b/kafbaa.png"
+    },
+    {
+      "name": "kaafbaa",
+      "image": "img/pg1b/kafbaab.png"
+    },
+    {
+      "name": "kaafalif",
+      "image": "img/pg1b/kafalif.png"
+    },
+    {
+      "name": "kaafalif",
+      "image": "img/pg1b/kafalifb.png"
+    },
+    {
+      "name": "baakaafthaa",
+      "image": "img/pg1b/baakafthaa.png"
+    },
+    {
+      "name": "thaakaafthsaa",
+      "image": "img/pg1b/thaakafthsaa.png"
+    },
+    {
+      "name": "baa",
+      "image": "img/baa.png"
+    },
+    {
+      "name": "tha",
       "image": "img/tha.png"
     },
     {
@@ -136,112 +208,136 @@
       "image": "img/thsaa.png"
     },
     {
-      "name": "baa",
-      "image": "img/baa.png"
-    },
-    {
-      "name": "jeem",
-      "image": "img/jeem.png"
-    },
-    {
-      "name": "Thwaa",
-      "image": "img/thwa.png"
-    },
-    {
-      "name": "Zsaal",
-      "image": "img/zsaal.png"
-    },
-    {
-      "name": "Zaa",
-      "image": "img/zaa.png"
-    },
-    {
-      "name": "Seen",
-      "image": "img/seen.png"
-    },
-    {
-      "name": "Swaad",
-      "image": "img/swad.png"
-    },
-    {
-      "name": "Ckaff",
-      "image": "img/caaf.png"
-    },
-    {
-      "name": "Dwaad",
-      "image": "img/dwad.png"
-    },
-    {
-      "name": "khaa",
-      "image": "img/kha.png"
-    },
-    {
-      "name": "Zwaa",
-      "image": "img/zwa.png"
-    },
-    {
-      "name": "Ghayn",
-      "image": "img/ghayn.png"
-    },
-    {
-      "name": "Ghayn",
-      "image": "img/ayn.png"
-    },
-    {
-      "name": "haa",
-      "image": "img/ha.png"
-    },
-    {
-      "name": "Sheen",
-      "image": "img/sheen.png"
-    },
-    {
-      "name": "Yaa",
-      "image": "img/ya.png"
-    },
-    {
-      "name": "Laam",
-      "image": "img/laam.png"
-    },
-    {
-      "name": "Meem",
-      "image": "img/meem.png"
-    },
-    {
-      "name": "Noon",
+      "name": "noon",
       "image": "img/noon.png"
     },
     {
-      "name": "Noon",
-      "image": "img/woaw.png"
-    },
-    {
-      "name": "Faa",
-      "image": "img/fa.png"
-    },
-    {
-      "name": "Yaa",
+      "name": "yaa",
       "image": "img/yaa.png"
     },
     {
-      "name": "Hamza",
-      "image": "img/hamza.png"
+      "name": "baaalif",
+      "image": "img/pg1b/baaalif.png"
     },
     {
-      "name": "Kaaf",
-      "image": "img/kaf.png"
+      "name": "noonalif",
+      "image": "img/pg1b/noonalif.png"
     },
     {
-      "name": "Daal",
-      "image": "img/daal.png"
+      "name": "thaaalif",
+      "image": "img/pg1b/thaaalif.png"
     },
     {
-      "name": "alif",
-      "image": "img/alif.png"
+      "name": "yaaalif",
+      "image": "img/pg1b/yaaalif.png"
     },
     {
-      "name": "Raa",
-      "image": "img/raa.png"
+      "name": "thsaaalif",
+      "image": "img/pg1b/thsaaalif.png"
+    },
+    {
+      "name": "baaseen",
+      "image": "img/pg1b/baaseen.png"
+    },
+    {
+      "name": "yaaseen",
+      "image": "img/pg1b/yaaseen.png"
+    },
+    {
+      "name": "noonseen",
+      "image": "img/pg1b/noonseen.png"
+    },
+    {
+      "name": "thaaseen",
+      "image": "img/pg1b/thaaseen.png"
+    },
+    {
+      "name": "thsaaseen",
+      "image": "img/pg1b/thsaaseen.png"
+    },
+    {
+      "name": "thsaajeem",
+      "image": "img/pg1b/thsaajeem.png"
+    },
+    {
+      "name": "thaaha",
+      "image": "img/pg1b/thaaha.png"
+    },
+    {
+      "name": "noonha",
+      "image": "img/pg1b/noonha.png"
+    },
+    {
+      "name": "yaaha",
+      "image": "img/pg1b/yaaha.png"
+    },
+    {
+      "name": "baajeem",
+      "image": "img/pg1b/baajeem.png"
+    },
+    {
+      "name": "yaameem",
+      "image": "img/pg1b/yaameem.png"
+    },
+    {
+      "name": "baameem",
+      "image": "img/pg1b/baameem.png"
+    },
+    {
+      "name": "noonmeem",
+      "image": "img/pg1b/noonmeem.png"
+    },
+    {
+      "name": "thaameem",
+      "image": "img/pg1b/thaameem.png"
+    },
+    {
+      "name": "thsaameem",
+      "image": "img/pg1b/thsaameem.png"
+    },
+    {
+      "name": "baayaa",
+      "image": "img/pg1b/baayaa.png"
+    },
+    {
+      "name": "yaayaa",
+      "image": "img/pg1b/yaayaa.png"
+    },
+    {
+      "name": "noonyaa",
+      "image": "img/pg1b/noonyaa.png"
+    },
+    {
+      "name": "thaayaa",
+      "image": "img/pg1b/thaayaa.png"
+    },
+    {
+      "name": "thsaayaa",
+      "image": "img/pg1b/thsaayaa.png"
+    },
+    {
+      "name": "noonbaalaam",
+      "image": "img/pg1b/noonbaalaam.png"
+    },
+    {
+      "name": "thaanoonlaam",
+      "image": "img/pg1b/thaanoonlaam.png"
+    },
+    {
+      "name": "baayaalaam",
+      "image": "img/pg1b/baayaalaam.png"
+    },
+    {
+      "name": "yaathaalaam",
+      "image": "img/pg1b/yaathaalaam.png"
+    },
+    {
+      "name": "thsaathsaalaam",
+      "image": "img/pg1b/thsaathsaalaam.png"
+    },
+    {
+      "name": "noonbaanoon",
+      "image": "img/pg1b/noonbaanoon.png"
     }
   ],
 

@@ -120,16 +120,21 @@ td {
   bottom: 0;
 }
 
-#bottom-nav #next {
+#next {
   float: left;
 }
 
-#bottom-nav #pageNumber {
+#next:focus {
+  color: #fff;
+  border: #fff 1px solid;
+}
+
+#pageNumber {
   margin: 0 29% !important;
   overflow: auto;
 }
 
-#bottom-nav #prev {
+#prev {
   float: right;
 }
 

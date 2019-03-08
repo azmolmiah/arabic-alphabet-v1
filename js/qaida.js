@@ -113,15 +113,18 @@ xhttp.onload = function() {
           }
         }
         let letterimg = document.querySelectorAll(".letter-image");
-        letterimg.forEach(img => {
-          if (this.object == obj[0]) {
-            img.style.width = "80px";
-            img.style.height = "80px";
-          } else if (this.object == obj[1]) {
-            img.style.width = "66.2px";
-            img.style.height = "66.2px";
+
+        if (this.object == obj[0]) {
+          for (let i = 0; i < letterimg.length; i++) {
+            letterimg[i].style.width = "80px";
+            letterimg[i].style.height = "80px";
           }
-        });
+        } else if (this.object == obj[1] || this.object == obj[2]) {
+          for (let i = 0; i < letterimg.length; i++) {
+            letterimg[i].style.width = "60px";
+            letterimg[i].style.height = "50px";
+          }
+        }
       }
     }
 
@@ -303,11 +306,9 @@ xhttp.onload = function() {
     }
 
     function bookMark() {
-      localStorage.setItem("letters", JSON.stringify(obj[current]));
       localStorage.setItem("pageNumber", JSON.stringify(current));
       checkBookMark(pageNumber);
       window.location.reload();
-      getBookMark();
     }
 
     let bookMarkRef = document.getElementById("bookMarkRef");
@@ -322,8 +323,7 @@ xhttp.onload = function() {
       reset();
       Section.reset();
       checkBookMark(current);
-      const arabicletters = JSON.parse(localStorage.getItem("letters"));
-      const bookMarkLetter = new Letters(arabicletters);
+      const bookMarkLetter = new Letters(obj[current]);
       bookMarkLetter.sectionLetters();
     }
     // Call the function to display the first page content
