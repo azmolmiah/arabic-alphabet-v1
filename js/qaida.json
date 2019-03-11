@@ -345,112 +345,232 @@
     {
       "sectOne": [
         {
-          "name": "alif",
-          "image": "img/alif.png"
+          "name": "baanoonnoon",
+          "image": "img/pg2/baanoonnoon.png"
         },
         {
-          "name": "Daal",
-          "image": "img/daal.png"
+          "name": "thaayaanoon",
+          "image": "img/pg2/thaayaanoon.png"
         },
         {
-          "name": "Raa",
-          "image": "img/raa.png"
+          "name": "yaathaanoon",
+          "image": "img/pg2/yaathaanoon.png"
         },
         {
-          "name": "Hamza",
-          "image": "img/hamza.png"
-        },
-        {
-          "name": "Thwaa",
-          "image": "img/thwa.png"
-        },
-        {
-          "name": "haa",
-          "image": "img/haa.png"
-        },
-        {
-          "name": "Noon",
-          "image": "img/woaw.png"
-        },
-        {
-          "name": "Seen",
-          "image": "img/seen.png"
-        },
-        {
-          "name": "haa",
-          "image": "img/ha.png"
-        },
-        {
-          "name": "Ghayn",
-          "image": "img/ayn.png"
-        },
-        {
-          "name": "Swaad",
-          "image": "img/swad.png"
-        },
-        {
-          "name": "Kaaf",
-          "image": "img/kaf.png"
-        },
-        {
-          "name": "Noon",
-          "image": "img/noon.png"
-        },
-        {
-          "name": "baa",
-          "image": "img/baa.png"
-        },
-        {
-          "name": "Zwaa",
-          "image": "img/zwa.png"
+          "name": "thsaanoonnoon",
+          "image": "img/pg2/thsathsaanoon.png"
         },
         {
           "name": "jeem",
           "image": "img/jeem.png"
         },
         {
-          "name": "Faa",
-          "image": "img/fa.png"
+          "name": "haa",
+          "image": "img/haa.png"
         },
         {
-          "name": "Zsaal",
-          "image": "img/zsaal.png"
-        },
-        {
-          "name": "Ghayn",
-          "image": "img/ayn.png"
-        },
-        {
-          "name": "thaa",
-          "image": "img/tha.png"
-        },
-        {
-          "name": "Dwaad",
-          "image": "img/dwad.png"
-        },
-        {
-          "name": "Zaa",
-          "image": "img/zaa.png"
-        },
-        {
-          "name": "khaa",
+          "name": "kha",
           "image": "img/kha.png"
         },
         {
-          "name": "Ckaff",
-          "image": "img/caaf.png"
+          "name": "haathsaa",
+          "image": "img/pg2/haathsaa.png"
         },
         {
-          "name": "Sheen",
-          "image": "img/sheen.png"
+          "name": "khabaa",
+          "image": "img/pg2/khabaa.png"
         },
         {
-          "name": "Yaa",
-          "image": "img/yaa.png"
+          "name": "jeemthaa",
+          "image": "img/pg2/jeemthaa.png"
         },
         {
-          "name": "thsaa",
-          "image": "img/thsaa.png"
+          "name": "thaahathaa",
+          "image": "img/pg2/thaahathaa.png"
+        },
+        {
+          "name": "yaajeembaa",
+          "image": "img/pg2/yaajeembaa.png"
+        },
+        {
+          "name": "baakhathaa",
+          "image": "img/pg2/baakhathaa.png"
+        },
+        {
+          "name": "",
+          "image": "img/pg2/thaa.png"
+        },
+        {
+          "name": "ha",
+          "image": "img/ha.png"
+        },
+        {
+          "name": "baathaa",
+          "image": "img/pg2/baathaa.png"
+        },
+        {
+          "name": "yaaha",
+          "image": "img/pg2/yaaha.png"
+        },
+        {
+          "name": "thaaraa",
+          "image": "img/pg2/thaaraa.png"
+        },
+        {
+          "name": "noonthaa",
+          "image": "img/pg2/noonthaa.png"
+        },
+        {
+          "name": "ha",
+          "image": "img/pg2/ha.png"
+        },
+        {
+          "name": "yaahabaa",
+          "image": "img/pg2/yaahabaa.png"
+        },
+        {
+          "name": "baahalif",
+          "image": "img/pg2/baahaalif.png"
+        },
+        {
+          "name": "baahameem",
+          "image": "img/pg2/baahameem.png"
+        },
+        {
+          "name": "daal",
+          "image": "img/pg2/daal.png"
+        },
+        {
+          "name": "zsaal",
+          "image": "img/zsaal.png"
+        },
+        {
+          "name": "jeemdaal",
+          "image": "img/pg2/jeemdaal.png"
+        },
+        {
+          "name": "khazsaal",
+          "image": "img/pg2/khazsaal.png"
+        },
+        {
+          "name": "raa",
+          "image": "img/raa.png"
+        },
+        {
+          "name": "zaa",
+          "image": "img/zaa.png"
+        },
+        {
+          "name": "jeemraa",
+          "image": "img/pg2/jeemraa.png"
+        },
+        {
+          "name": "khazaa",
+          "image": "img/pg2/khazaa.png"
+        },
+        {
+          "name": "raa",
+          "image": "img/pg2/raa.png"
+        },
+        {
+          "name": "zaa",
+          "image": "img/pg2/zaa.png"
+        },
+        {
+          "name": "yaaraa",
+          "image": "img/pg2/yaaraa.png"
+        },
+        {
+          "name": "thaazaa",
+          "image": "img/pg2/thaazaa.png"
+        },
+        {
+          "name": "seen",
+          "image": "img/seen.png"
+        },
+        {
+          "name": "sheen",
+          "image": "img/pg2/sheen.png"
+        },
+        {
+          "name": "swad",
+          "image": "img/swad.png"
+        },
+        {
+          "name": "dwad",
+          "image": "img/dwad.png"
+        },
+        {
+          "name": "thwa",
+          "image": "img/thwa.png"
+        },
+        {
+          "name": "swadbaa",
+          "image": "img/pg2/swadbaa.png"
+        },
+        {
+          "name": "thwabaa",
+          "image": "img/pg2/thwabaa.png"
+        },
+        {
+          "name": "dwaadalif",
+          "image": "img/pg2/dwaadalif.png"
+        },
+        {
+          "name": "zwaaalif",
+          "image": "img/pg2/zwaaalif.png"
+        },
+        {
+          "name": "ayn",
+          "image": "img/ayn.png"
+        },
+        {
+          "name": "ghayn",
+          "image": "img/ghayn.png"
+        },
+        {
+          "name": "hamza",
+          "image": "img/hamza.png"
+        },
+        {
+          "name": "aynzaa",
+          "image": "img/pg2/aynzaa.png"
+        },
+        {
+          "name": "ghaynraa",
+          "image": "img/pg2/ghaynraa.png"
+        },
+        {
+          "name": "swaadayn",
+          "image": "img/pg2/swaadayn.png"
+        },
+        {
+          "name": "dwaadghayn",
+          "image": "img/pg2/dwaadghayn.png"
+        },
+        {
+          "name": "baaayndaal",
+          "image": "img/pg2/baaayndaal.png"
+        },
+        {
+          "name": "thaaghaynzsaal",
+          "image": "img/pg2/thaaghaynzsaal.png"
+        },
+        {
+          "name": "alifhamza",
+          "image": "img/pg2/alifhamza.png"
+        },
+        {
+          "name": "wowhamza",
+          "image": "img/pg2/wowhamza.png"
+        },
+        {
+          "name": "yaahamza",
+          "image": "img/pg2/yaahamza.png"
+        },
+        {
+          "name": "fa",
+          "image": "img/fa.png"
         }
       ]
     },

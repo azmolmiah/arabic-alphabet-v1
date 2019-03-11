@@ -106,13 +106,13 @@ xhttp.onload = function() {
           });
         } else {
           for (let i = 0; i < this.object.length; i++) {
-            output += `<td id="${
-              this.object[i].name
-            }" ><img class="letter-image" src="${this.object[i].image}"></td>`;
+            output += `<td id="${this.object[i].name}" ><img src="${
+              this.object[i].image
+            }"></td>`;
             currentPage.innerHTML = output;
           }
         }
-        let letterimg = document.querySelectorAll(".letter-image");
+        let letterimg = document.getElementsByTagName("img");
 
         if (this.object == obj[0]) {
           for (let i = 0; i < letterimg.length; i++) {
@@ -309,6 +309,10 @@ xhttp.onload = function() {
       localStorage.setItem("pageNumber", JSON.stringify(current));
       checkBookMark(pageNumber);
       window.location.reload();
+    }
+
+    if (performance.navigation.type == 1) {
+      getBookMark();
     }
 
     let bookMarkRef = document.getElementById("bookMarkRef");
