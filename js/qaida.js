@@ -121,8 +121,8 @@ xhttp.onload = function() {
           }
         } else if (this.object == obj[1] || this.object == obj[2]) {
           for (let i = 0; i < letterimg.length; i++) {
-            letterimg[i].style.width = "60px";
-            letterimg[i].style.height = "50px";
+            letterimg[i].style.width = "66.3px";
+            letterimg[i].style.height = "44.5px";
           }
         }
       }
