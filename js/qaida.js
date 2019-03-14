@@ -85,6 +85,15 @@ xhttp.onload = function() {
         this.object = objects;
       }
 
+      static pageTitle(img, titleHeight) {
+        const newTd = document.createElement("td");
+        newTd.style.padding = "4px";
+        newTd.style.height = titleHeight;
+        newTd.innerHTML = `<img  src="${img}">`;
+        const td = document.getElementsByTagName("td");
+        currentPage.insertBefore(newTd, td[0]);
+      }
+
       sectionLetters() {
         if (this.object.length == 2) {
           this.object[0].sectOne.forEach(one => {
@@ -117,9 +126,16 @@ xhttp.onload = function() {
         if (this.object == obj[0]) {
           for (let i = 0; i < letterimg.length; i++) {
             letterimg[i].style.width = "80px";
-            letterimg[i].style.height = "80px";
+            letterimg[i].style.height = "70px";
           }
-        } else if (this.object == obj[1] || this.object == obj[2]) {
+        } else if (this.object == obj[1]) {
+          Letters.pageTitle("img/pg2/secondpagetitle.png", "44.5px");
+          for (let i = 0; i < letterimg.length; i++) {
+            letterimg[0].style.width = "100%";
+            letterimg[i].style.width = "66.3px";
+            letterimg[i].style.height = "44.5px";
+          }
+        } else if (this.object == obj[2]) {
           for (let i = 0; i < letterimg.length; i++) {
             letterimg[i].style.width = "66.3px";
             letterimg[i].style.height = "44.5px";
