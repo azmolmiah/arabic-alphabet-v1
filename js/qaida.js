@@ -124,7 +124,10 @@ xhttp.onload = function() {
         let letterimg = document.getElementsByTagName("img");
 
         if (this.object == obj[0]) {
+          Letters.pageTitle("img/firstpagetitle.png", "44.5px");
           for (let i = 0; i < letterimg.length; i++) {
+            letterimg[0].style.width = "100%";
+            letterimg[0].style.height = "44.5px";
             letterimg[i].style.width = "80px";
             letterimg[i].style.height = "70px";
           }
