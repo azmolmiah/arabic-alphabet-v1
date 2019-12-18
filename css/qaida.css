@@ -60,9 +60,9 @@ body {
   border-color: #10a2c7;
 }
 
-table {
+/* table {
   margin: 0 !important;
-}
+} */
 
 th,
 td {
@@ -92,13 +92,6 @@ td {
 
 /* Main page Section */
 
-#alphabet .container {
-  position: absolute;
-  top: 8.4%;
-  left: 35%;
-  max-width: 414px !important;
-}
-
 #alphabet td:hover,
 .bgBlue {
   background: #10a2c7;
@@ -106,6 +99,9 @@ td {
   cursor: pointer;
 }
 
+.letters {
+  position: absolute;
+}
 .letters td {
   padding: 0;
   float: right;
