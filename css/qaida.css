@@ -85,7 +85,8 @@ td {
 }
 
 #bookmark:hover,
-#bookMarkRef:hover {
+#bookMarkRef:hover,
+.playpause-nav {
   cursor: pointer;
 }
 
