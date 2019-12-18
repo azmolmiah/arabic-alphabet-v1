@@ -8,7 +8,7 @@ body {
   color: #fff;
 }
 .container {
-  width: 600px;
+  max-width: 414px;
   margin: 0 auto;
 }
 
@@ -84,7 +84,8 @@ td {
   margin-left: 1em;
 }
 
-#bookmark:hover {
+#bookmark:hover,
+#bookMarkRef:hover {
   cursor: pointer;
 }
 
@@ -113,6 +114,7 @@ td {
 #bottom-nav {
   position: fixed;
   bottom: 0;
+  padding-bottom: 0 !important;
 }
 
 #next {
@@ -125,7 +127,7 @@ td {
 }
 
 #pageNumber {
-  margin: 0 29% !important;
+  margin-left: 8rem;
   overflow: auto;
 }
 
