@@ -1,13 +1,11 @@
+// Global variables ==============
+// ===============================
+
+// Get local storage page number
+const localStoragePgNum = JSON.parse(localStorage.getItem("pageNumber"));
+
 // Get all the pages to be displayed
 let currentPage = document.querySelector(".letters");
-
-// Get current number element and add options
-const currentPageNumber = document.getElementById("pageNumber");
-let options;
-for (let i = 0; i <= 40; i++) {
-  options += `<option>${i}</option>`;
-}
-currentPageNumber.innerHTML += options;
 
 // Get the next or next page element// Get the previous or previous page element
 const next = document.querySelector("#next");
@@ -20,7 +18,7 @@ xhttp.onload = function() {
   if (this.status === 200) {
     // parsing the json data from the json file as an object// Get property values of the keys in an array
     let response = JSON.parse(xhttp.responseText);
-    let obj = Object.values(response);
+    let pageArr = Object.values(response);
 
     /*Set a variable with the value of 0 to use to iterate over pages, to display current
             page number, iterate current index of page divs or obj variable arrays*/
@@ -120,7 +118,7 @@ xhttp.onload = function() {
         }
         let letterimg = document.getElementsByTagName("img");
 
-        if (this.object == obj[0]) {
+        if (this.object == pageArr[0]) {
           Letters.pageTitle("img/firstpagetitle.png", "44.5px");
           for (let i = 0; i < letterimg.length; i++) {
             letterimg[0].style.width = "100%";
@@ -128,14 +126,14 @@ xhttp.onload = function() {
             letterimg[i].style.width = "80px";
             letterimg[i].style.height = "70px";
           }
-        } else if (this.object == obj[1]) {
+        } else if (this.object == pageArr[1]) {
           Letters.pageTitle("img/pg2/secondpagetitle.png", "44.5px");
           for (let i = 0; i < letterimg.length; i++) {
             letterimg[0].style.width = "100%";
             letterimg[i].style.width = "66.3px";
             letterimg[i].style.height = "44.5px";
           }
-        } else if (this.object == obj[2]) {
+        } else if (this.object == pageArr[2]) {
           for (let i = 0; i < letterimg.length; i++) {
             letterimg[i].style.width = "66.3px";
             letterimg[i].style.height = "44.5px";
@@ -145,7 +143,7 @@ xhttp.onload = function() {
     }
 
     function getAllLetters(indexNum) {
-      const getallletters = new Letters(obj[indexNum]);
+      const getallletters = new Letters(pageArr[indexNum]);
       getallletters.sectionLetters();
     }
 
@@ -179,25 +177,29 @@ xhttp.onload = function() {
     //Get the previous button and add event
     prev.addEventListener("click", function() {
       if (current === 0) {
-        current = obj.length;
+        current = pageArr.length;
       }
       previousPage();
     });
 
     //Get the next button and add event
     next.addEventListener("click", function() {
-      if (current === obj.length - 1) {
+      if (current === pageArr.length - 1) {
         current = -1;
       }
       nextPage();
     });
 
-    // ========================================= SOUND FUNCTION ================================== //
+    // =========================================
+    // =========================================
+    // LETTER SOUNDS ===========================
+    // =========================================
+    // =========================================
+
     // Set empty sound variable, Setting the Audio Object, concatenate file extensions
     const folder = "audio/";
     const extension = ".mp3";
-    let sound;
-    sound = new Audio();
+    let sound = new Audio();
 
     function sndSrc(source) {
       sound.src = folder + source + extension;
@@ -239,9 +241,9 @@ xhttp.onload = function() {
 
     function sectionLoop() {
       // If two section
-      if (obj[current].length == 2) {
+      if (pageArr[current].length == 2) {
         twoSectionConcat = obj[current][0].sectOne.concat(
-          obj[current][1].sectTwo
+          pageArr[current][1].sectTwo
         );
         playPauseBtn(twoSectionConcat.length, sectTwoArr);
         sndSrc(twoSectionConcat[playIndex].name);
@@ -253,9 +255,9 @@ xhttp.onload = function() {
         );
         sectTwoArr[playIndex].classList.add("bgBlue");
         // If Three section
-      } else if (obj[current].length == 3) {
+      } else if (pageArr[current].length == 3) {
         let threeSectionConcat = twoSectionConcat.concat(
-          obj[current][2].sectThree
+          pageArr[current][2].sectThree
         );
         playPauseBtn(threeSectionConcat.length, sectThreeArr);
         sndSrc(threeSectionConcat[playIndex].name);
@@ -264,8 +266,8 @@ xhttp.onload = function() {
         );
         sectThreeArr[playIndex].classList.add("bgBlue");
       } else {
-        playPauseBtn(obj[current].length, currentPage.children);
-        sndSrc(obj[current][playIndex].name);
+        playPauseBtn(pageArr[current].length, currentPage.children);
+        sndSrc(pageArr[current][playIndex].name);
         currentPage.children[playIndex].classList.add("bgBlue");
       }
     }
@@ -288,27 +290,42 @@ xhttp.onload = function() {
       }
     }
 
-    // =========================================== SELECT OPTIONS ======================================= //
-    currentPageNumber.addEventListener("change", options);
+    // ===========================================
+    // ===========================================
+    // SELECT OPTIONS ============================
+    // ===========================================
+    // ===========================================
 
-    function options(e) {
+    // Create select options element depending on pages and letters
+    const currentOptionPageNumber = document.getElementById("pageNumber");
+    let options;
+    for (let i = 0; i <= pageArr.length; i++) {
+      options += `<option>${i}</option>`;
+    }
+    currentOptionPageNumber.innerHTML += options;
+
+    // Select a page, get all letters, check book marks
+    currentOptionPageNumber.addEventListener("change", selectOptions);
+    function selectOptions(e) {
       reset();
       // Set current to option target value
-      current = Number(e.target.value);
-      checkBookMark(current);
-      getAllLetters(current);
+      checkBookMark(Number(e.target.value));
+      getAllLetters(Number(e.target.value));
     }
 
-    // =========================================== Book Mark ================================== //
-    let pageNumber = JSON.parse(localStorage.getItem("pageNumber"));
+    // ===========================================
+    // ===========================================
+    // BOOK MARK =================================
+    // ===========================================
+    // ===========================================
+
     //Local storage set bookmark
     let bookMarkIcon = document.getElementById("bookmark");
     bookMarkIcon.addEventListener("mousedown", bookMark);
 
-    //Check Bookmark and fill if current bookMark
-
+    //Change empty boookmark Icon to filled icon if current bookMark
     function checkBookMark(pagenumber) {
-      if (pageNumber === pagenumber) {
+      if (localStoragePgNum === pagenumber) {
         bookMarkIcon.classList.remove("fa-bookmark-o");
         bookMarkIcon.classList.add("fa-bookmark");
       } else {
@@ -317,31 +334,31 @@ xhttp.onload = function() {
       }
     }
 
+    // On click set bookMark / icon set page number to local storage, check for current icon and refresh to remove from other icons that are set
     function bookMark() {
       localStorage.setItem("pageNumber", JSON.stringify(current));
-      checkBookMark(pageNumber);
-      window.location.reload();
+      checkBookMark(localStoragePgNum);
+      // // Get page to reload
+      // window.location.reload();
     }
 
-    if (performance.navigation.type == 1) {
-      getBookMark();
-    }
+    // if (performance.navigation.type === 1) {
+    //   getBookMark();
+    // }
 
-    let bookMarkRef = document.getElementById("bookMarkRef");
-    bookMarkRef.addEventListener("mousedown", getBookMark);
-
-    // Local storage get bookmark
+    // get bookmark data onclick 'bookmark' link
+    let bookMarkLink = document.getElementById("bookMarkRef");
+    bookMarkLink.addEventListener("mousedown", getBookMark);
     function getBookMark() {
-      currentPageNumber.selectedIndex = JSON.parse(
-        localStorage.getItem("pageNumber")
-      );
-      current = pageNumber;
       reset();
+      // Set current page and selected page to pageNumber from local storage
+      currentOptionPageNumber.selectedIndex = localStoragePgNum;
+      current = localStoragePgNum;
       checkBookMark(current);
-      const bookMarkLetter = new Letters(obj[current]);
+      const bookMarkLetter = new Letters(pageArr[current]);
       bookMarkLetter.sectionLetters();
     }
-    // Call the function to display the first page content
+    // Call the function to display the first page content onload
     startQaida();
   } //--closing brace if readystate and status
 }; //--Closing brace on xhttp onreadystate change object

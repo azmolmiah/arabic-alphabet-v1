@@ -111,7 +111,6 @@ td {
 #bottom-nav {
   position: fixed;
   bottom: 0;
-  padding-bottom: 0 !important;
 }
 
 #next {
@@ -124,8 +123,7 @@ td {
 }
 
 #pageNumber {
-  margin-left: 8rem;
-  overflow: auto;
+  margin: 0 13%;
 }
 
 #prev {
