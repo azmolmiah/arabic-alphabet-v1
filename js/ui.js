@@ -292,13 +292,17 @@ xhttp.onload = function() {
 
     let bookMarkLink = document.getElementById("bookMarkRef");
     bookMarkLink.addEventListener("mousedown", getBookMark);
-    function getBookMark() {
-      reset();
-      currentOptionPageNumber.selectedIndex = localStoragePgNum;
-      current = localStoragePgNum;
-      checkBookMark(current);
-      const bookMarkLetter = new Letters(pageArr[current]);
-      bookMarkLetter.sectionLetters();
+    function getBookMark(e) {
+      if (localStoragePgNum !== null) {
+        reset();
+        currentOptionPageNumber.selectedIndex = localStoragePgNum;
+        current = localStoragePgNum;
+        checkBookMark(current);
+        const bookMarkLetter = new Letters(pageArr[current]);
+        bookMarkLetter.sectionLetters();
+      } else {
+        e.preventDefault();
+      }
     }
 
     initFirstPage();
