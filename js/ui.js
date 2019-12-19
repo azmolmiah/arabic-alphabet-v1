@@ -1,33 +1,23 @@
 // Global variables ==============
 // ===============================
-
-// Get local storage page number
 const localStoragePgNum = JSON.parse(localStorage.getItem("pageNumber"));
-// Get all the pages to be displayed
 let currentPage = document.querySelector(".letters");
-// Get the next or next page element// Get the previous or previous page element
 const next = document.querySelector("#next");
 const prev = document.querySelector("#prev");
 
-// Create new XMLHttpRequest request
 let xhttp = new XMLHttpRequest();
 xhttp.onload = function() {
-  // If server status was ok
   if (this.status === 200) {
-    // parsing the json data from the json file as an object
-    // Get property values of the keys in an array
     let response = JSON.parse(xhttp.responseText);
     let pageArr = Object.values(response);
 
-    /*Set a variable with the value of 0 to use to iterate over pages, to display current
-            page number, iterate current index of page divs or obj variable arrays*/
     let current = 0;
     let output;
     //let outputTwo;
     //let outputThree;
 
-    const sectionElement = document.createElement("tr");
-    sectionElement.className = "letters mt-3";
+    //const sectionElement = document.createElement("tr");
+    //sectionElement.className = "letters mt-3";
     // const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
 
     //const sectionElementThree = document.createElement("tr");
@@ -145,34 +135,27 @@ xhttp.onload = function() {
       getallletters.sectionLetters();
     }
 
-    // Set the first page to be displayed when windows loaded
-    function startQaida() {
-      // reset the page to clear first
+    function initFirstPage() {
       reset();
       getAllLetters(current);
-    } //--closing brace startQaida()
+    }
 
-    //display content each time going to previous page
     function previousPage() {
       reset();
-      // Drop down option
       currentOptionPageNumber.selectedIndex = current - 1;
       getAllLetters(current - 1);
       checkBookMark(current - 1);
       current--;
-    } //--Closing brace previousPage()
+    }
 
-    // display content each time going to next page*
     function nextPage() {
       reset();
-      // Drop down option
       currentOptionPageNumber.selectedIndex = current + 1;
       getAllLetters(current + 1);
       checkBookMark(current + 1);
       current++;
-    } //--Closing brace nextPage()
+    }
 
-    //Get the previous page button
     prev.addEventListener("click", function() {
       if (current === 0) {
         current = pageArr.length;
@@ -180,7 +163,6 @@ xhttp.onload = function() {
       previousPage();
     });
 
-    //Get the next page button
     next.addEventListener("click", function() {
       if (current === pageArr.length - 1) {
         current = -1;
@@ -197,13 +179,13 @@ xhttp.onload = function() {
     // Set empty sound variable, Setting the Audio Object, concatenate file extensions
     const folder = "audio/";
     const extension = ".mp3";
-    let sound = new Audio();
-
+    const sound = new Audio();
+    let playIndex = 0;
+    const playPaused = document.getElementById("playBtn");
     function sndSrc(source) {
       sound.src = folder + source + extension;
     }
 
-    // If play loop has reached end of last letter
     function playPauseBtn(objLength, removeAllBgBlue) {
       if (playIndex == objLength) {
         playPaused.classList.remove("fa-pause");
@@ -219,9 +201,22 @@ xhttp.onload = function() {
       }
     }
 
-    let playIndex = 0;
-    let playPaused = document.getElementById("playBtn");
+    // Loop through the sound of each letter
+    function loopThroughSound() {
+      playPauseBtn(pageArr[current].length, currentPage.children);
+      sndSrc(pageArr[current][playIndex].name);
+      currentPage.children[playIndex].classList.add("bgBlue");
+    }
 
+    // Increment the playIndex
+    sound.addEventListener("ended", switchSound);
+    function switchSound() {
+      loopThroughSound();
+      sound.play();
+      playIndex++;
+    }
+
+    // Onclick play button or init Loop
     playPaused.addEventListener("mousedown", () => {
       if (sound.paused) {
         playPaused.classList.remove("fa-play");
@@ -234,58 +229,13 @@ xhttp.onload = function() {
       }
     });
 
-    // let twoSectionConcat;
-    // let sectTwoArr;
-
-    function sectionLoop() {
-      // If two section
-      // if (pageArr[current].length == 2) {
-      //   twoSectionConcat = obj[current][0].sectOne.concat(
-      //     pageArr[current][1].sectTwo
-      //   );
-      //   playPauseBtn(twoSectionConcat.length, sectTwoArr);
-      //   sndSrc(twoSectionConcat[playIndex].name);
-      //   let sectOneArr = Array.from(
-      //     currentPage.parentElement.firstChild.children
-      //   );
-      //   sectTwoArr = sectOneArr.concat(
-      //     Array.from(currentPage.parentElement.children[1].children)
-      //   );
-      //   sectTwoArr[playIndex].classList.add("bgBlue");
-      //   // If Three section
-      // } else if (pageArr[current].length == 3) {
-      //   let threeSectionConcat = twoSectionConcat.concat(
-      //     pageArr[current][2].sectThree
-      //   );
-      //   playPauseBtn(threeSectionConcat.length, sectThreeArr);
-      //   sndSrc(threeSectionConcat[playIndex].name);
-      //   let sectThreeArr = sectTwoArr.concat(
-      //     Array.from(currentPage.parentElement.children[2].children)
-      //   );
-      //   sectThreeArr[playIndex].classList.add("bgBlue");
-      // } else {
-      playPauseBtn(pageArr[current].length, currentPage.children);
-      sndSrc(pageArr[current][playIndex].name);
-      currentPage.children[playIndex].classList.add("bgBlue");
-      //}
-    }
-
-    // Increment the playIndex, loop through the sections depending on how many
-    sound.addEventListener("ended", switchSound);
-    function switchSound() {
-      sectionLoop();
-      sound.play();
-      playIndex++;
-    }
-
     // Play clicking individual sounds
     currentPage.parentElement.addEventListener("click", selectSound);
     function selectSound(e) {
-      let soundTwo = new Audio();
-      // Get id name of each sound image thats outputed
-      soundTwo.src = folder + e.path[1].id + extension;
-      if (soundTwo.paused) {
-        soundTwo.play();
+      let onClickSound = new Audio();
+      onClickSound.src = folder + e.path[1].id + extension;
+      if (onClickSound.paused) {
+        onClickSound.play();
       }
     }
 
@@ -295,7 +245,6 @@ xhttp.onload = function() {
     // ===========================================
     // ===========================================
 
-    // Create select options element depending on pages and letters
     const currentOptionPageNumber = document.getElementById("pageNumber");
     let options;
     for (let i = 0; i <= pageArr.length; i++) {
@@ -303,11 +252,9 @@ xhttp.onload = function() {
     }
     currentOptionPageNumber.innerHTML += options;
 
-    // Select a page, get all letters, check book marks
     currentOptionPageNumber.addEventListener("change", selectOptions);
     function selectOptions(e) {
       reset();
-      // Set current to option target value
       checkBookMark(Number(e.target.value));
       getAllLetters(Number(e.target.value));
     }
@@ -318,11 +265,6 @@ xhttp.onload = function() {
     // ===========================================
     // ===========================================
 
-    //Local storage set bookmark
-    let bookMarkIcon = document.getElementById("bookmark");
-    bookMarkIcon.addEventListener("mousedown", bookMark);
-
-    //Change empty boookmark Icon to filled icon if current bookMark
     function checkBookMark(pagenumber) {
       if (localStoragePgNum === pagenumber) {
         bookMarkIcon.classList.remove("fa-bookmark-o");
@@ -333,32 +275,33 @@ xhttp.onload = function() {
       }
     }
 
-    // On click set bookMark / icon set page number to local storage, check for current icon and refresh to remove from other icons that are set
-    function bookMark() {
+    let bookMarkIcon = document.getElementById("bookmark");
+    bookMarkIcon.addEventListener("mousedown", setBookMark);
+
+    function setBookMark() {
       localStorage.setItem("pageNumber", JSON.stringify(current));
       checkBookMark(localStoragePgNum);
-      // // Get page to reload
-      // window.location.reload();
+      //Get page to reload when trieving any new bookmark info
+      window.location.reload();
     }
 
-    // if (performance.navigation.type === 1) {
-    //   getBookMark();
-    // }
+    // When page reloads to get or update current bookmark info
+    if (performance.navigation.type === 1) {
+      getBookMark();
+    }
 
-    // get bookmark data onclick 'bookmark' link
     let bookMarkLink = document.getElementById("bookMarkRef");
     bookMarkLink.addEventListener("mousedown", getBookMark);
     function getBookMark() {
       reset();
-      // Set current page and selected page to pageNumber from local storage
       currentOptionPageNumber.selectedIndex = localStoragePgNum;
       current = localStoragePgNum;
       checkBookMark(current);
       const bookMarkLetter = new Letters(pageArr[current]);
       bookMarkLetter.sectionLetters();
     }
-    // Call the function to display the first page content onload
-    startQaida();
+
+    initFirstPage();
   } //--closing brace if readystate and status
 }; //--Closing brace on xhttp onreadystate change object
 
