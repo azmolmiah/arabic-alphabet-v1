@@ -3,10 +3,8 @@
 
 // Get local storage page number
 const localStoragePgNum = JSON.parse(localStorage.getItem("pageNumber"));
-
 // Get all the pages to be displayed
 let currentPage = document.querySelector(".letters");
-
 // Get the next or next page element// Get the previous or previous page element
 const next = document.querySelector("#next");
 const prev = document.querySelector("#prev");
@@ -16,7 +14,8 @@ let xhttp = new XMLHttpRequest();
 xhttp.onload = function() {
   // If server status was ok
   if (this.status === 200) {
-    // parsing the json data from the json file as an object// Get property values of the keys in an array
+    // parsing the json data from the json file as an object
+    // Get property values of the keys in an array
     let response = JSON.parse(xhttp.responseText);
     let pageArr = Object.values(response);
 
@@ -24,19 +23,18 @@ xhttp.onload = function() {
             page number, iterate current index of page divs or obj variable arrays*/
     let current = 0;
     let output;
-    let outputTwo;
-    let outputThree;
+    //let outputTwo;
+    //let outputThree;
 
-    // Add second row
     const sectionElement = document.createElement("tr");
     sectionElement.className = "letters mt-3";
-    const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
+    // const sectionTwo = currentPage.parentElement.appendChild(sectionElement);
 
-    const sectionElementThree = document.createElement("tr");
-    sectionElementThree.className = "letters mt-3";
-    const sectionThree = currentPage.parentElement.appendChild(
-      sectionElementThree
-    );
+    //const sectionElementThree = document.createElement("tr");
+    //sectionElementThree.className = "letters mt-3";
+    // const sectionThree = currentPage.parentElement.appendChild(
+    //   sectionElementThree
+    // );
 
     /* Rest or clear the page when this function is called intended when new page loads
             just before the new content is loaded*/
@@ -65,14 +63,14 @@ xhttp.onload = function() {
 
     // console.log(obj.length - 1);
 
-    const sectionone = new Section(output, currentPage),
-      sectiontwo = new Section(outputTwo, sectionTwo),
-      sectionthree = new Section(outputThree, sectionThree);
+    const sectionone = new Section(output, currentPage);
+    //sectiontwo = new Section(outputTwo, sectionTwo),
+    //sectionthree = new Section(outputThree, sectionThree);
 
     function reset() {
       sectionone.resets();
-      sectiontwo.resets();
-      sectionthree.resets();
+      // sectiontwo.resets();
+      // sectionthree.resets();
     }
 
     class Letters {
@@ -90,32 +88,32 @@ xhttp.onload = function() {
       }
 
       sectionLetters() {
-        if (this.object.length == 2) {
-          // If page has two sectins
-          this.object[0].sectOne.forEach(one => {
-            sectionone.sections(one);
-          });
-          this.object[1].sectTwo.forEach(two => {
-            sectiontwo.sections(two);
-          });
-        } else if (this.object.length == 3) {
-          // If page has three sections
-          this.object[0].sectOne.forEach(one => {
-            sectionone.sections(one);
-          });
-          this.object[1].sectTwo.forEach(two => {
-            sectiontwo.sections(two);
-          });
-          this.object[2].sectThree.forEach(three => {
-            sectionthree.sections(three);
-          });
-        } else {
-          // if page has one section
-          for (let i = 0; i < this.object.length; i++) {
-            output += `<td id="${this.object[i].name}" ><img src="${this.object[i].image}"></td>`;
-            currentPage.innerHTML = output;
-          }
+        // if (this.object.length == 2) {
+        //   // If page has two sectins
+        //   this.object[0].sectOne.forEach(one => {
+        //     sectionone.sections(one);
+        //   });
+        //   this.object[1].sectTwo.forEach(two => {
+        //     sectiontwo.sections(two);
+        //   });
+        // } else if (this.object.length == 3) {
+        //   // If page has three sections
+        //   this.object[0].sectOne.forEach(one => {
+        //     sectionone.sections(one);
+        //   });
+        //   this.object[1].sectTwo.forEach(two => {
+        //     sectiontwo.sections(two);
+        //   });
+        //   this.object[2].sectThree.forEach(three => {
+        //     sectionthree.sections(three);
+        //   });
+        // } else {
+        // if page has one section
+        for (let i = 0; i < this.object.length; i++) {
+          output += `<td id="${this.object[i].name}" ><img src="${this.object[i].image}"></td>`;
+          currentPage.innerHTML = output;
         }
+        //}
         let letterimg = document.getElementsByTagName("img");
 
         if (this.object == pageArr[0]) {
@@ -158,7 +156,7 @@ xhttp.onload = function() {
     function previousPage() {
       reset();
       // Drop down option
-      currentPageNumber.selectedIndex = current - 1;
+      currentOptionPageNumber.selectedIndex = current - 1;
       getAllLetters(current - 1);
       checkBookMark(current - 1);
       current--;
@@ -168,13 +166,13 @@ xhttp.onload = function() {
     function nextPage() {
       reset();
       // Drop down option
-      currentPageNumber.selectedIndex = current + 1;
+      currentOptionPageNumber.selectedIndex = current + 1;
       getAllLetters(current + 1);
       checkBookMark(current + 1);
       current++;
     } //--Closing brace nextPage()
 
-    //Get the previous button and add event
+    //Get the previous page button
     prev.addEventListener("click", function() {
       if (current === 0) {
         current = pageArr.length;
@@ -182,7 +180,7 @@ xhttp.onload = function() {
       previousPage();
     });
 
-    //Get the next button and add event
+    //Get the next page button
     next.addEventListener("click", function() {
       if (current === pageArr.length - 1) {
         current = -1;
@@ -236,42 +234,43 @@ xhttp.onload = function() {
       }
     });
 
-    let twoSectionConcat;
-    let sectTwoArr;
+    // let twoSectionConcat;
+    // let sectTwoArr;
 
     function sectionLoop() {
       // If two section
-      if (pageArr[current].length == 2) {
-        twoSectionConcat = obj[current][0].sectOne.concat(
-          pageArr[current][1].sectTwo
-        );
-        playPauseBtn(twoSectionConcat.length, sectTwoArr);
-        sndSrc(twoSectionConcat[playIndex].name);
-        let sectOneArr = Array.from(
-          currentPage.parentElement.firstChild.children
-        );
-        sectTwoArr = sectOneArr.concat(
-          Array.from(currentPage.parentElement.children[1].children)
-        );
-        sectTwoArr[playIndex].classList.add("bgBlue");
-        // If Three section
-      } else if (pageArr[current].length == 3) {
-        let threeSectionConcat = twoSectionConcat.concat(
-          pageArr[current][2].sectThree
-        );
-        playPauseBtn(threeSectionConcat.length, sectThreeArr);
-        sndSrc(threeSectionConcat[playIndex].name);
-        let sectThreeArr = sectTwoArr.concat(
-          Array.from(currentPage.parentElement.children[2].children)
-        );
-        sectThreeArr[playIndex].classList.add("bgBlue");
-      } else {
-        playPauseBtn(pageArr[current].length, currentPage.children);
-        sndSrc(pageArr[current][playIndex].name);
-        currentPage.children[playIndex].classList.add("bgBlue");
-      }
+      // if (pageArr[current].length == 2) {
+      //   twoSectionConcat = obj[current][0].sectOne.concat(
+      //     pageArr[current][1].sectTwo
+      //   );
+      //   playPauseBtn(twoSectionConcat.length, sectTwoArr);
+      //   sndSrc(twoSectionConcat[playIndex].name);
+      //   let sectOneArr = Array.from(
+      //     currentPage.parentElement.firstChild.children
+      //   );
+      //   sectTwoArr = sectOneArr.concat(
+      //     Array.from(currentPage.parentElement.children[1].children)
+      //   );
+      //   sectTwoArr[playIndex].classList.add("bgBlue");
+      //   // If Three section
+      // } else if (pageArr[current].length == 3) {
+      //   let threeSectionConcat = twoSectionConcat.concat(
+      //     pageArr[current][2].sectThree
+      //   );
+      //   playPauseBtn(threeSectionConcat.length, sectThreeArr);
+      //   sndSrc(threeSectionConcat[playIndex].name);
+      //   let sectThreeArr = sectTwoArr.concat(
+      //     Array.from(currentPage.parentElement.children[2].children)
+      //   );
+      //   sectThreeArr[playIndex].classList.add("bgBlue");
+      // } else {
+      playPauseBtn(pageArr[current].length, currentPage.children);
+      sndSrc(pageArr[current][playIndex].name);
+      currentPage.children[playIndex].classList.add("bgBlue");
+      //}
     }
 
+    // Increment the playIndex, loop through the sections depending on how many
     sound.addEventListener("ended", switchSound);
     function switchSound() {
       sectionLoop();
